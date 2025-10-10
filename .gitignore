@@ -61,3 +61,6 @@ venv.bak/
 .history/
 *.vsix
 .vscode
+
+# DB cert
+*.crt
