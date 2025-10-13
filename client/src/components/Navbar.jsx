@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../assets/css/Navbar.css";
+import SearchBar from "./SearchBar";
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
@@ -78,14 +77,7 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        <button
-                            type="button"
-                            className="btn text-white p-0 d-none d-lg-block"
-                            data-bs-toggle="modal"
-                            data-bs-target="#searchModal"
-                        >
-                            <FontAwesomeIcon icon={faSearch} />
-                        </button>
+                        <SearchBar />
                     </div>
                 </nav>
             </div>
