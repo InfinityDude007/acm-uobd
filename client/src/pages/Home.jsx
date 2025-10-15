@@ -6,7 +6,7 @@ import Testimonial from "../components/Home/Testimonial";
 // import Services from "../components/Services";
 // import Newsletter from "../components/Newsletter";
 // import CaseStudies from "../components/CaseStudies";
-// import Portfolio from "../components/Portfolio";
+import Portfolio from "../components/Home/Portfolio";
 // import Testimonials from "../components/Testimonials";
 // import FAQs from "../components/FAQs";
 
@@ -16,6 +16,7 @@ const Home = () => {
             <Hero />
             <About />
             <Testimonial />
+            <Portfolio />
             {/* <Services />
             <Newsletter />
             <CaseStudies />
