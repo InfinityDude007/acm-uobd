@@ -9,43 +9,52 @@
     text-transform: uppercase;
     font-weight: 600;
     font-size: 1.1rem;
+    margin-bottom: 0.5rem;
 }
 
 .portfolio-section .section-title h1 {
     font-weight: 700;
     font-size: 2.5rem;
     color: #212529;
+    margin-top: 0.5rem;
 }
 
-/* Portfolio Badge Styles - More prominent */
+/* Portfolio Badge Styles */
 .portfolio-badge {
     display: inline-block;
-    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 10px 25px;
-    border-radius: 25px;
-    font-size: 0.7rem;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.85rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-    /* border: 2px solid rgba(255, 255, 255, 0.2); */
+    border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Alternative badge style if the above doesn't work */
-.portfolio-badge-alt {
-    display: inline-block;
-    background: #0d6efd;
+/* Pin Indicator for Featured Posts */
+.portfolio-pin-indicator {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 12px 30px;
-    border-radius: 30px;
-    font-size: 1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 1rem;
-    box-shadow: 0 6px 20px rgba(13, 110, 253, 0.3);
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+.pin-icon {
+    font-size: 0.7rem;
 }
 
 .portfolio-item {
@@ -186,7 +195,21 @@
     
     .portfolio-badge {
         font-size: 0.8rem;
-        padding: 8px 20px;
+        padding: 6px 16px;
+        margin-bottom: 0.25rem;
+    }
+    
+    .portfolio-section .section-title h6 {
+        margin-bottom: 0.25rem;
+    }
+    
+    .portfolio-section .section-title h1 {
+        margin-top: 0.25rem;
+    }
+    
+    .portfolio-pin-indicator {
+        font-size: 0.7rem;
+        padding: 4px 8px;
     }
 }
 
@@ -206,6 +229,6 @@
     
     .portfolio-badge {
         font-size: 0.75rem;
-        padding: 6px 16px;
+        padding: 5px 14px;
     }
 }
