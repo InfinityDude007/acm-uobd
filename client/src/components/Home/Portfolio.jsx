@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "../../assets/css/Home/Portfolio.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faFolder } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faFolder, faThumbtack } from "@fortawesome/free-solid-svg-icons";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -23,6 +23,7 @@ const Portfolio = () => {
         });
     }, []);
 
+    // Sample data structure - this would come from your Django backend
     const portfolioItems = [
         {
             id: 1,
@@ -30,7 +31,9 @@ const Portfolio = () => {
             category: "OpenVino",
             title: "Deep Learning Technologies",
             animation: "fade-up",
-            delay: 100
+            delay: 100,
+            isPinned: true, // This would be set by admin in Django
+            isPlaceholder: false
         },
         {
             id: 2,
@@ -38,7 +41,9 @@ const Portfolio = () => {
             category: "NVIDIA",
             title: "Riding the Generative AI Wave",
             animation: "fade-up",
-            delay: 200
+            delay: 200,
+            isPinned: true, // This would be set by admin in Django
+            isPlaceholder: false
         },
         {
             id: 3,
@@ -46,7 +51,9 @@ const Portfolio = () => {
             category: "Web Design",
             title: "Project Name",
             animation: "fade-up",
-            delay: 300
+            delay: 300,
+            isPinned: false,
+            isPlaceholder: false
         },
         {
             id: 4,
@@ -54,7 +61,9 @@ const Portfolio = () => {
             category: "Student-Led",
             title: "Generative AI & Prompt Engineering Workshop",
             animation: "fade-up",
-            delay: 400
+            delay: 400,
+            isPinned: false,
+            isPlaceholder: false
         },
         {
             id: 5,
@@ -62,7 +71,9 @@ const Portfolio = () => {
             category: "Intel",
             title: "Moore's law is dead",
             animation: "fade-up",
-            delay: 500
+            delay: 500,
+            isPinned: false,
+            isPlaceholder: false
         },
         {
             id: 6,
@@ -70,14 +81,109 @@ const Portfolio = () => {
             category: "Web Design",
             title: "Project Name",
             animation: "fade-up",
-            delay: 600
+            delay: 600,
+            isPinned: false,
+            isPlaceholder: false
         }
     ];
+
+    // Function to get items for the first row (always 3 items)
+    const getFirstRowItems = () => {
+        const pinnedItems = portfolioItems.filter(item => item.isPinned);
+        const regularItems = portfolioItems.filter(item => !item.isPinned && !item.isPlaceholder);
+        
+        // If we have 3 or more pinned items, use them
+        if (pinnedItems.length >= 3) {
+            return pinnedItems.slice(0, 3);
+        }
+        
+        // If we have some pinned items, fill the rest with regular items
+        if (pinnedItems.length > 0) {
+            const needed = 3 - pinnedItems.length;
+            return [...pinnedItems, ...regularItems.slice(0, needed)];
+        }
+        
+        // If no pinned items, use first 3 regular items
+        return regularItems.slice(0, 3);
+    };
+
+    // Function to get remaining items for second row and beyond
+    const getRemainingItems = () => {
+        const firstRowIds = getFirstRowItems().map(item => item.id);
+        return portfolioItems.filter(item => 
+            !firstRowIds.includes(item.id) && 
+            !item.isPlaceholder
+        );
+    };
+
+    const firstRowItems = getFirstRowItems();
+    const remainingItems = getRemainingItems();
+
+    // Function to render a portfolio item
+    const renderPortfolioItem = (item, index) => (
+        <div 
+            key={item.id}
+            className="col-lg-4 col-md-6 portfolio-item"
+            data-aos={item.animation}
+            data-aos-delay={item.delay}
+        >
+            <div className="position-relative rounded overflow-hidden portfolio-card">
+                {/* Pin indicator for pinned posts */}
+                {item.isPinned && (
+                    <div className="portfolio-pin-indicator">
+                        <FontAwesomeIcon icon={faThumbtack} className="pin-icon" />
+                        <span>Featured</span>
+                    </div>
+                )}
+                
+                {/* Image with fallback */}
+                <div className="portfolio-image-container">
+                    <img 
+                        className="img-fluid w-100 portfolio-image" 
+                        src={item.image} 
+                        alt={item.title}
+                        onError={(e) => {
+                            e.target.style.display = 'none';
+                            e.target.nextSibling.style.display = 'block';
+                        }}
+                    />
+                    {/* Fallback if image doesn't load */}
+                    <div 
+                        className="portfolio-image-fallback"
+                        style={{
+                            display: 'none',
+                            height: '250px',
+                            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: 'white',
+                            fontSize: '1.2rem',
+                            fontWeight: 'bold'
+                        }}
+                    >
+                        {item.category}
+                    </div>
+                </div>
+                
+                {/* Blue Overlay on Hover */}
+                <div className="portfolio-overlay">
+                    <div className="portfolio-content">
+                        <small className="text-white">
+                            <FontAwesomeIcon icon={faFolder} className="me-2" />
+                            {item.category}
+                        </small>
+                        <div className="h5 text-white mt-1 mb-0 portfolio-title">
+                            {item.title}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 
     return (
         <section className="container-fluid py-5 portfolio-section">
             <div className="container px-lg-5">
-                {/* Move the badge outside the section-title div for better control */}
                 <div className="text-center mb-4" data-aos="fade-up">
                     <div className="portfolio-badge">Portfolio</div>
                 </div>
@@ -90,57 +196,19 @@ const Portfolio = () => {
                     <h1 className="mb-4">Past Events</h1>
                 </div>
                 
+                {/* First Row - Always 3 items */}
                 <div className="row g-4 portfolio-container">
-                    {portfolioItems.map((item) => (
-                        <div 
-                            key={item.id}
-                            className="col-lg-4 col-md-6 portfolio-item"
-                            data-aos={item.animation}
-                            data-aos-delay={item.delay}
-                        >
-                            <div className="position-relative rounded overflow-hidden portfolio-card">
-                                <div className="portfolio-image-container">
-                                    <img 
-                                        className="img-fluid w-100 portfolio-image" 
-                                        src={item.image} 
-                                        alt={item.title}
-                                        onError={(e) => {
-                                            e.target.style.display = 'none';
-                                            e.target.nextSibling.style.display = 'block';
-                                        }}
-                                    />
-                                    <div 
-                                        className="portfolio-image-fallback"
-                                        style={{
-                                            display: 'none',
-                                            height: '250px',
-                                            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            color: 'white',
-                                            fontSize: '1.2rem',
-                                            fontWeight: 'bold'
-                                        }}
-                                    >
-                                        {item.category}
-                                    </div>
-                                </div>
-                                
-                                <div className="portfolio-overlay">
-                                    <div className="portfolio-content">
-                                        <small className="text-white">
-                                            <FontAwesomeIcon icon={faFolder} className="me-2" />
-                                            {item.category}
-                                        </small>
-                                        <div className="h5 text-white mt-1 mb-0 portfolio-title">
-                                            {item.title}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+                    {firstRowItems.map((item, index) => renderPortfolioItem(item, index))}
                 </div>
+
+                {/* Remaining Items */}
+                {remainingItems.length > 0 && (
+                    <>
+                        <div className="row g-4 portfolio-container mt-4">
+                            {remainingItems.map((item, index) => renderPortfolioItem(item, index))}
+                        </div>
+                    </>
+                )}
 
                 <br />
                 <br />
