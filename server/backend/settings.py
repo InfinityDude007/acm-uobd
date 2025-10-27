@@ -28,7 +28,13 @@ SECRET_KEY = 'django-insecure-7*jz23b$=dyft++(sn-3#=sp8smj+u)p^%7^j-h-y+g3h$dy4m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+host_url = os.getenv("HOST_URL")
+
+ALLOWED_HOSTS = [
+    "localhost:8000",
+    "127.0.0.1:8000",
+    host_url
+]
 
 load_dotenv()
 
@@ -58,8 +64,13 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
+dev_url = os.getenv("PAGES_URL")
+deployment_url = os.getenv("DEPLOYMENT_URL")
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    dev_url,
+    deployment_url
 ]
 
 ROOT_URLCONF = 'backend.urls'
