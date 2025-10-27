@@ -66,11 +66,13 @@ MIDDLEWARE = [
 
 dev_url = os.getenv("PAGES_URL")
 deployment_url = os.getenv("DEPLOYMENT_URL")
+cname_url = os.getenv("CNAME_DEPLOYMENT_URL")
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     dev_url,
-    deployment_url
+    deployment_url,
+    cname_url
 ]
 
 ROOT_URLCONF = 'backend.urls'
