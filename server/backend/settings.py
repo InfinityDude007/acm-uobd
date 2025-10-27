@@ -138,6 +138,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+MEDIA_URL = "/media/"
+# If BASE_DIR is a pathlib.Path (usual Django template), do:
+MEDIA_ROOT = BASE_DIR / "api" / "assets"
+# If BASE_DIR is a string, use:
+# MEDIA_ROOT = os.path.join(BASE_DIR, "api", "assets")
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
