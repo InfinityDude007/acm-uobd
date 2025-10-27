@@ -14,6 +14,9 @@ from .forms import RegistrationForm
 from django.utils import timezone
 from .serializers import EventSerializer
 
+def health_check(request):
+    return JsonResponse({"status": "ok"})
+
 @api_view(['GET'])
 def events_view(request):
     current_time = timezone.now()
