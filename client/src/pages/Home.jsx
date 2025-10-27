@@ -8,8 +8,7 @@ import Testimonial from "../components/Home/Testimonial";
 // import Newsletter from "../components/Newsletter";
 // import CaseStudies from "../components/CaseStudies";
 import Portfolio from "../components/Home/Portfolio";
-// import Testimonials from "../components/Testimonials";
-// import FAQs from "../components/FAQs";
+import FAQs from "../components/Home/Faq"
 
 const Home = () => {
     return (
@@ -17,10 +16,9 @@ const Home = () => {
             <Hero />
             <About />
             <Services />
-            <Testimonial />
-            <Faq />
             <Portfolio />
-            
+            <Testimonial />
+            <FAQs />
         </div>
     );
 };
