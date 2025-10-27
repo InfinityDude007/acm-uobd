@@ -85,6 +85,16 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
+supabase_cert = os.getenv("SUPABASE_SSL_CERT")
+
+if supabase_cert:
+    tmp_cert_path = "/tmp/supabase.crt"
+    with open(tmp_cert_path, "w") as cert_file:
+        cert_file.write(supabase_cert)
+
+    os.environ["DATABASE_SSL_CERT"] = tmp_cert_path
+
 ssl_cert_path = os.getenv("DATABASE_SSL_CERT")
 
 DATABASES = {
