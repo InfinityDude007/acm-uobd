@@ -10,4 +10,6 @@ urlpatterns = [
     path('events/<int:event_id>/register/', views.register_for_event, name='register_for_event'),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Serve media files in development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
