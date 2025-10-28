@@ -37,8 +37,6 @@ host_url = os.getenv("HOST_URL")
 API_KEY = os.getenv("BACKEND_API_KEY")
 
 ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
     host_url
 ]
 
@@ -59,6 +57,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -67,14 +66,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'api.utils.api_middleware.ProtectAPIMiddleware'
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://localhost:4173",
     dev_url,
     deployment_url,
     cname_url
