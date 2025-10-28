@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import api from "../utils/api";
 import "../assets/css/Events.css";
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
 
 const Events = () => {
     const [upcomingEvents, setUpcomingEvents] = useState([]);
@@ -12,16 +11,14 @@ const Events = () => {
     const fetchEvents = async () => {
         try {
             setLoading(true);
-            const response = await fetch(`${API_BASE_URL}/api/events/`);
-            if (!response.ok) {
-                throw new Error('Failed to fetch events');
-            }
-            const data = await response.json();
+            const data = await api.get("/events");
             setUpcomingEvents(data.upcoming_events || []);
             setPastEvents(data.past_events || []);
+
         } catch (err) {
-            console.error('Error fetching events:', err);
+            console.error("Error fetching events:", err);
             setError(err.message);
+
         } finally {
             setLoading(false);
         }
@@ -33,22 +30,12 @@ const Events = () => {
 
     const handleRegistration = async (eventId, formData) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/api/events/${eventId}/register/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            if (response.ok) {
-                return { success: true, message: 'Registration successful!' };
-            } else {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Registration failed');
-            }
+            await api.post(`/events/${eventId}/register`, formData);
+            return { success: true, message: "Registration successful!" };
+            
         } catch (error) {
-            return { success: false, message: error.message };
+            console.error("Registration error:", error);
+            return { success: false, message: error.message || "Registration failed" };
         }
     };
 
