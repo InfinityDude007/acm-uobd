@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import api from "../utils/api";
+import fallbackImg from "../assets/img/bg-hero.png"
 import "../assets/css/Events.css";
 
 const Events = () => {
@@ -99,11 +100,11 @@ const Events = () => {
             <div className="col-md-4 mb-4">
                 <div className="card event-card animate__animated animate__fadeInUp">
                     <img 
-                        src={event.thumbnail || '/img/bg-hero.jpg'} 
+                        src={event.thumbnail || fallbackImg} 
                         className="fixed-thumbnail card-img-top" 
                         alt={event.title}
                         onError={(e) => {
-                            e.target.src = '/img/bg-hero.jpg';
+                            e.target.src = fallbackImg;
                         }}
                     />
                     <div className="card-body">
