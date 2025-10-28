@@ -99,11 +99,11 @@ const Events = () => {
             <div className="col-md-4 mb-4">
                 <div className="card event-card animate__animated animate__fadeInUp">
                     <img 
-                        src={event.thumbnail || '../img/bg-hero.jpg'} 
+                        src={event.thumbnail || '/img/bg-hero.jpg'} 
                         className="fixed-thumbnail card-img-top" 
                         alt={event.title}
                         onError={(e) => {
-                            e.target.src = '../img/bg-hero.jpg';
+                            e.target.src = '/img/bg-hero.jpg';
                         }}
                     />
                     <div className="card-body">
