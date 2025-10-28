@@ -9,6 +9,7 @@ db.sqlite3-journal
 media
 *.py[cod]
 *$py.class
+*/staticfiles
 
 # Distribution / packaging
 .Python
