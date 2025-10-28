@@ -8,9 +8,14 @@ class ProtectAPIMiddleware:
         self.api_key = getattr(settings, 'API_KEY', None)
 
     def __call__(self, request):
-
         path = request.path
-        if path.startswith('/admin') or path.startswith('/static') or path.startswith('/media'):
+
+        if (
+            path.startswith('/admin') or
+            path.startswith('/static') or
+            path.startswith('/media') or
+            path.startswith('/api/health')
+        ):
             return self.get_response(request)
 
         if path.startswith('/api/'):
