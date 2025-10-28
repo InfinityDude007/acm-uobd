@@ -28,11 +28,17 @@ SECRET_KEY = 'django-insecure-7*jz23b$=dyft++(sn-3#=sp8smj+u)p^%7^j-h-y+g3h$dy4m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Load required env variables
+dev_url = os.getenv("PAGES_URL")
+deployment_url = os.getenv("DEPLOYMENT_URL")
+cname_url = os.getenv("CNAME_DEPLOYMENT_URL")
+supabase_cert = os.getenv("SUPABASE_SSL_CERT")
 host_url = os.getenv("HOST_URL")
+API_KEY = os.getenv("BACKEND_API_KEY")
 
 ALLOWED_HOSTS = [
-    "localhost:8000",
-    "127.0.0.1:8000",
+    "localhost",
+    "127.0.0.1",
     host_url
 ]
 
@@ -63,14 +69,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'api.utils.api_middleware.ProtectAPIMiddleware'
 ]
-
-dev_url = os.getenv("PAGES_URL")
-deployment_url = os.getenv("DEPLOYMENT_URL")
-cname_url = os.getenv("CNAME_DEPLOYMENT_URL")
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "http://localhost:4173",
     dev_url,
     deployment_url,
     cname_url
@@ -98,9 +102,6 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
-
-supabase_cert = os.getenv("SUPABASE_SSL_CERT")
 
 if supabase_cert:
     tmp_cert_path = "/tmp/supabase.crt"
