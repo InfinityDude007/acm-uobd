@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import api from "../utils/api";
 import fallbackImg from "../assets/img/bg-hero.png"
 import "../assets/css/Events.css";
+import bgHero from "../assets/img/bg-hero.png";
 
 const Events = () => {
     const [upcomingEvents, setUpcomingEvents] = useState([]);
@@ -340,6 +341,7 @@ const Events = () => {
             <section 
                 className="container-fluid pt-5 bg-primary hero-header mb-5 animate__animated animate__fadeIn"
                 style={{
+                    backgroundImage: `url(${bgHero})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                 }}
