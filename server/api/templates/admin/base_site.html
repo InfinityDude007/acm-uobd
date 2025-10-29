@@ -1,0 +1,33 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block title %}ACM UoBD - Admin Panel{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <link rel="icon" type="image/x-icon" href='/media/admin/logo_white_bg.png'>
+{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name">
+        <img src="/media/admin/logo_white_bg.png" alt="ACM Logo" style="height: 80px; width: 80px;">
+        <a href="{% url 'admin:index' %}" style="font-weight: 600; color: #ffffff;">ACM UoBD - Admin Panel</a>
+    </h1>
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+    <style>
+        html[data-theme="dark"], :root {
+            --primary: #15ACE1;
+            --secondary: #1363c6;
+            --link-fg: #15ACE1;
+            --link-selected-fg: #1363c6;
+        }
+        html[data-theme="light"], :root {
+            --primary: #15ACE1;
+            --secondary: #1363c6;
+            --link-fg: #15ACE1;
+            --link-selected-fg: #1363c6;
+        }
+    </style>
+{% endblock %}
