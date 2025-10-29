@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import load_dotenv
+import tempfile
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -99,7 +100,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 if supabase_cert:
-    tmp_cert_path = "/tmp/supabase.crt"
+    tmp_cert_path = os.path.join(tempfile.gettempdir(), "supabase.crt")
     with open(tmp_cert_path, "w") as cert_file:
         cert_file.write(supabase_cert)
 
