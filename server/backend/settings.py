@@ -30,15 +30,17 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() in ("true", "1", "yes")
 
 # Load required env variables
-dev_url = os.getenv("PAGES_URL")
+pages_url = os.getenv("PAGES_URL")
 deployment_url = os.getenv("DEPLOYMENT_URL")
 cname_url = os.getenv("CNAME_DEPLOYMENT_URL")
 supabase_cert = os.getenv("SUPABASE_SSL_CERT")
 host_url = os.getenv("HOST_URL")
+dev_url = os.getenv("DEV_URL")
 API_KEY = os.getenv("BACKEND_API_KEY")
 
 ALLOWED_HOSTS = [
-    host_url
+    host_url,
+    dev_url
 ]
 
 load_dotenv()
@@ -71,7 +73,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    dev_url,
+    pages_url,
     deployment_url,
     cname_url
 ]
