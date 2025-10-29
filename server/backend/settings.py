@@ -113,7 +113,7 @@ ssl_cert_path = os.getenv("DATABASE_SSL_CERT")
 DATABASES = {
     'default': dj_database_url.parse(
         os.getenv('SUPABASE_DB_URL'),
-        conn_max_age=600,
+        conn_max_age=300,
         ssl_require=True
     )
 }
