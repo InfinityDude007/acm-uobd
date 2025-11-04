@@ -32,6 +32,7 @@ const Navbar = ({ toggleColorMode, mode }) => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
+    const [searchOpen, setSearchOpen] = useState(false);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
@@ -135,13 +136,14 @@ const Navbar = ({ toggleColorMode, mode }) => {
             position="fixed"
             elevation={0}
             sx={{
+                pb: searchOpen ? (isMobile ? 6 : 8) : 0,
                 backgroundColor: "rgba(0,0,0,0)",
                 boxShadow: "none",
-                transition: "background-color 0.4s ease, box-shadow 0.4s ease",
+                transition: "background-color 0.4s ease, box-shadow 0.4s ease, padding-bottom 0.4s ease",
                 ...(scrolled && {
                     backgroundColor: theme.palette.primary.main,
                     boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
-                    transition: "background-color 0.4s ease, box-shadow 0.4s ease",
+                    transition: "background-color 0.4s ease, box-shadow 0.4s ease, padding-bottom 0.4s ease",
                 }),
             }}
         >
@@ -153,9 +155,9 @@ const Navbar = ({ toggleColorMode, mode }) => {
                 <Toolbar
                     disableGutters={ isMobile ? false : true }
                     sx={{
-                        height: 80,
-                        minHeight: 80,
-                        justifyContent: "space-between"
+                        height: isMobile ? 70 : 80,
+                        minHeight: isMobile ? 70 : 80,
+                        justifyContent: "space-between",
                     }}
                 >
                     <Typography
@@ -186,17 +188,13 @@ const Navbar = ({ toggleColorMode, mode }) => {
                             <IconButton
                                 onClick={toggleColorMode}
                                 sx={{
-                                    ml: 2,
-                                    color: theme.palette.background.paper,
-                                    "&:hover": {
-                                        color: theme.palette.text.primary,
-                                    },
+                                    color: theme.palette.text.primary,
                                 }}
                             >
                                 {mode === "dark" ? <LightMode fontSize="small" /> : < NightlightRound fontSize="small" />}
                             </IconButton>
                             <Box>
-                                <SearchBar />
+                                <SearchBar open={searchOpen} setOpen={setSearchOpen} />
                             </Box>
                             <IconButton
                                 color="inherit"
@@ -299,7 +297,7 @@ const Navbar = ({ toggleColorMode, mode }) => {
                             </Box>
 
                             <Box sx={{ ml: "25px" }}>
-                                    <SearchBar />
+                                <SearchBar open={searchOpen} setOpen={setSearchOpen} />
                             </Box>
                             
                             <Tooltip
