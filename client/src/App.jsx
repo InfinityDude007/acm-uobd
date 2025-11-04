@@ -1,25 +1,40 @@
-import React from "react";
+import { useState, useMemo } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import { createAppTheme } from "./theme";
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import Events from "./pages/Events";  
+import Events from "./pages/Events";
+
 
 function App() {
+  const [mode, setMode] = useState("light");
+  const theme = useMemo(() => createAppTheme(mode), [mode]);
+
+  const toggleColorMode = () => {
+    setMode((prev) => (prev === "light" ? "dark" : "light"));
+  };
+
   return (
-    <Router>
-      <Navbar />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/events" element={<Events />} />
+      <Router>
+        <Navbar mode={mode} toggleColorMode={toggleColorMode} />
 
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/events" element={<Events />} />
+        </Routes>
+
+        <Footer />
+      </Router>
       
-      <Footer />
-    </Router>
+    </ThemeProvider>
   );
 }
+
 
 export default App;
