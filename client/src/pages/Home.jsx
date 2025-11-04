@@ -1,5 +1,4 @@
 import React from "react";
-import "../assets/css/Home/Home.css";
 import Hero from "../components/Home/Hero";
 import About from "../components/Home/About";
 import Services from "../components/Home/Services";
