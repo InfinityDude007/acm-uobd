@@ -15,13 +15,14 @@ import {
     MenuItem,
     Container,
     Box,
+    Tooltip,
     useMediaQuery,
     useTheme,
 } from "@mui/material";
 import {
     Menu as MenuIcon,
     LightMode,
-    ModeNight,
+    NightlightRound,
     KeyboardArrowDown,
 } from "@mui/icons-material";
 import AOS from "aos";
@@ -35,11 +36,11 @@ const Navbar = ({ toggleColorMode, mode }) => {
     const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
     useEffect(() => {
-            AOS.init({
-                duration: 900,
-                once: false,
-            });
-        }, []);
+        AOS.init({
+            duration: 1000,
+            once: false,
+        });
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -94,9 +95,9 @@ const Navbar = ({ toggleColorMode, mode }) => {
                             sx={{
                                 textAlign: "center",
                                 py: 1.25,
-                                color: "rgba(255, 255, 255, 0.85)",
+                                color: theme.palette.background.paper,
                                 "&:hover": {
-                                    color: "#ffffff",
+                                    color: theme.palette.text.primary,
                                     bgcolor: "transparent",
                                 },
                             }}
@@ -114,9 +115,9 @@ const Navbar = ({ toggleColorMode, mode }) => {
                             sx={{
                                 textAlign: "center",
                                 py: 1.25,
-                                color: "rgba(255, 255, 255, 0.85)",
+                                color: theme.palette.background.paper,
                                 "&:hover": {
-                                    color: "#ffffff",
+                                    color: theme.palette.text.primary,
                                     bgcolor: "transparent",
                                 },
                             }}
@@ -132,18 +133,22 @@ const Navbar = ({ toggleColorMode, mode }) => {
     return (
         <AppBar
             position="fixed"
-            color="rgba(0, 0, 0, 0)"
             elevation={0}
             sx={{
-                backgroundColor: scrolled ? theme.palette.primary.main : "rgba(0, 0, 0, 0)",
-                boxShadow: scrolled ? "0 2px 10px rgba(0, 0, 0, 0.15)" : "none",
+                backgroundColor: "rgba(0,0,0,0)",
+                boxShadow: "none",
                 transition: "background-color 0.4s ease, box-shadow 0.4s ease",
+                ...(scrolled && {
+                    backgroundColor: theme.palette.primary.main,
+                    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
+                    transition: "background-color 0.4s ease, box-shadow 0.4s ease",
+                }),
             }}
-            data-aos="fade-down"
         >
             <Container
                 maxWidth="lg"
                 disableGutters={ isMobile ? false : true }
+                data-aos="fade-down"
             >
                 <Toolbar
                     disableGutters={ isMobile ? false : true }
@@ -182,13 +187,13 @@ const Navbar = ({ toggleColorMode, mode }) => {
                                 onClick={toggleColorMode}
                                 sx={{
                                     ml: 2,
-                                    color: "rgba(255, 255, 255, 0.85)",
+                                    color: theme.palette.background.paper,
                                     "&:hover": {
-                                        color: "#ffffff",
+                                        color: theme.palette.text.primary,
                                     },
                                 }}
                             >
-                                {mode === "dark" ? <LightMode fontSize="small" /> : < ModeNight fontSize="small" />}
+                                {mode === "dark" ? <LightMode fontSize="small" /> : < NightlightRound fontSize="small" />}
                             </IconButton>
                             <Box>
                                 <SearchBar />
@@ -214,19 +219,21 @@ const Navbar = ({ toggleColorMode, mode }) => {
                                         component={RouterLink}
                                         to={item.path}
                                         sx={{
-                                            color: "rgba(255, 255, 255, 0.85)",
+                                            color: theme.palette.background.paper,
                                             textTransform: "none",
                                             fontSize: "1rem",
-                                            fontWeight: 400,
+                                            fontWeight: 500,
                                             p: 0,
                                             minWidth: "auto",
-                                            transition: "color 0.3s ease",
+                                            transition: "color 0.3s ease, transform 0.3s ease",
+                                            transform: "translateY(0)",
                                             "&:hover": {
-                                                color: "#ffffff",
+                                                color: theme.palette.text.primary,
                                                 bgcolor: "transparent",
+                                                transform: "translateY(-2px)"
                                             },
                                             "&.active": {
-                                                color: "#ffffff",
+                                                color: theme.palette.text.primary,
                                             },
                                         }}
                                     >
@@ -238,16 +245,18 @@ const Navbar = ({ toggleColorMode, mode }) => {
                                     onClick={handleDropdownOpen}
                                     endIcon={<KeyboardArrowDown />}
                                     sx={{
-                                        color: "rgba(255, 255, 255, 0.85)",
+                                        color: Boolean(anchorEl) ? theme.palette.text.primary : theme.palette.background.paper,
                                         textTransform: "none",
                                         fontSize: "1rem",
-                                        fontWeight: 400,
+                                        fontWeight: 500,
                                         p: 0,
                                         minWidth: "auto",
-                                        transition: "color 0.3s ease",
+                                        transition: "color 0.3s ease, transform 0.3s ease",
+                                        transform: Boolean(anchorEl) ? "translateY(-2px)" : "translateY(0)",
                                         "&:hover": {
-                                            color: "#ffffff",
+                                            color: theme.palette.text.primary,
                                             bgcolor: "transparent",
+                                            transform: "translateY(-2px)",
                                         },
                                     }}
                                 >
@@ -257,11 +266,15 @@ const Navbar = ({ toggleColorMode, mode }) => {
                                     anchorEl={anchorEl}
                                     open={Boolean(anchorEl)}
                                     onClose={handleDropdownClose}
+                                    disableScrollLock
+                                    transformOrigin={{ vertical: "top", horizontal: "center" }}
+                                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                                     sx={{
                                         mt: 1,
                                         "& .MuiPaper-root": {
-                                            bgcolor: "background.paper",
+                                            bgcolor: "background.default",
                                             boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
+                                            color: theme.palette.text.secondary
                                         },
                                     }}
                                 >
@@ -274,8 +287,8 @@ const Navbar = ({ toggleColorMode, mode }) => {
                                             onClick={handleDropdownClose}
                                             sx={{
                                                 "&:hover": {
-                                                    bgcolor: "primary.main",
-                                                    color: "#fff",
+                                                    backgroundColor: theme.palette.background.paper,
+                                                    transition: "background-color 0.8s ease"
                                                 },
                                             }}
                                         >
@@ -285,22 +298,44 @@ const Navbar = ({ toggleColorMode, mode }) => {
                                 </Menu>
                             </Box>
 
-                            <Box sx={{ ml: "35px" }}>
-                                <SearchBar />
+                            <Box sx={{ ml: "25px" }}>
+                                    <SearchBar />
                             </Box>
-
-                            <IconButton
-                                onClick={toggleColorMode}
-                                sx={{
-                                    ml: 2,
-                                    color: "rgba(255, 255, 255, 0.85)",
-                                    "&:hover": {
-                                        color: "#ffffff",
+                            
+                            <Tooltip
+                                title={mode === "dark" ? "Light Mode" : "Dark Mode"}
+                                placement="bottom"
+                                arrow
+                                slotProps={{
+                                    popper: {
+                                        modifiers: [
+                                            {
+                                            name: 'offset',
+                                            options: {
+                                                offset: [0, -5],
+                                            },
+                                            },
+                                        ],
                                     },
                                 }}
                             >
-                                {mode === "dark" ? <LightMode fontSize="small" /> : < ModeNight fontSize="small" />}
-                            </IconButton>
+                                <IconButton
+                                    onClick={toggleColorMode}
+                                    sx={{
+                                        ml: 2,
+                                        color: theme.palette.background.paper,
+                                        transition: "color 0.3s ease, transform 0.3s ease",
+                                        transform: "translateY(0)",
+                                        "&:hover": {
+                                            color: theme.palette.text.primary,
+                                            bgcolor: "transparent",
+                                            transform: "translateY(-2px)"
+                                        },
+                                    }}
+                                >
+                                    {mode === "dark" ? <LightMode fontSize="medium" /> : < NightlightRound fontSize="small" />}
+                                </IconButton>
+                            </Tooltip>
                         </>
                     )}
                 </Toolbar>
