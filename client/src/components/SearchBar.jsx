@@ -1,12 +1,32 @@
 import { useState, useEffect, useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import "../assets/css/SearchBar.css";
+import { 
+    Box, 
+    IconButton, 
+    TextField, 
+    Slide,
+    Tooltip,
+    useTheme,
+    useMediaQuery
+} from "@mui/material";
+import { Search as SearchIcon } from "@mui/icons-material";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-const SearchBar = () => {
-    const [open, setOpen] = useState(false);
+const SearchBar = ({ open: controlledOpen, setOpen: setControlledOpen }) => {
+    const [internalOpen, setInternalOpen] = useState(false);
+    const open = controlledOpen ?? internalOpen;
+    const setOpen = setControlledOpen ?? setInternalOpen;
     const inputRef = useRef(null);
     const containerRef = useRef(null);
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+    useEffect(() => {
+        AOS.init({
+            duration: 400,
+            easing: 'ease-in-out',
+        });
+    }, []);
 
     useEffect(() => {
         const handleKeyDown = (e) => {
@@ -36,44 +56,133 @@ const SearchBar = () => {
         return () => window.removeEventListener("mousedown", handleClickOutside);
     }, [open]);
 
-    return (
-        <div ref={containerRef}>
-            <div className="searchbar-toggle">
-                <button
-                    className="btn text-white"
-                    onClick={() => setOpen(!open)}
-                    aria-label="Toggle search bar"
-                >
-                    <FontAwesomeIcon icon={faSearch} />
-                </button>
-            </div>
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const query = inputRef.current.value.trim();
+        if (query) {
+            console.log("Search:", query);
+            // TODO: integrate real search logic
+        }
+        setOpen(false);
+    };
 
-            <div className={`searchbar-container ${open ? "open" : ""}`}>
-                <div className="container py-2">
-                    <form
-                        onSubmit={(e) => {
-                            e.preventDefault();
-                            const query = inputRef.current.value.trim();
-                            if (query) {
-                                console.log("Search:", query);
-                                // TODO: integrate real search logic
-                            }
-                            setOpen(false);
+    return (
+        <Box ref={containerRef}>
+            <Box 
+                sx={{ 
+                    position: "relative", 
+                }}
+            >
+                <Tooltip
+                    title="Search"
+                    placement="bottom"
+                    arrow
+                    slotProps={{
+                        popper: {
+                            modifiers: [
+                                {
+                                name: 'offset',
+                                options: {
+                                    offset: [0, -5],
+                                },
+                                },
+                            ],
+                        },
+                    }}
+                >
+                    <IconButton
+                        onClick={() => setOpen(!open)}
+                        aria-label="Toggle search bar"
+                        sx={{
+                            color: isMobile ? theme.palette.text.primary : theme.palette.background.paper,
+                            transition: "color 0.3s ease, transform 0.3s ease",
+                            transform: "translateY(0)",
+                            "&:hover": {
+                                color: theme.palette.text.primary,
+                                bgcolor: "transparent",
+                                transform: "translateY(-2px)",
+                            },
                         }}
                     >
-                        <input
-                            ref={inputRef}
-                            type="text"
-                            className="form-control searchbar-input rounded-pill"
-                            placeholder="Search the ACM UoBD Website..."
-                            onBlur={(e) => {
-                                if (!e.relatedTarget) setOpen(false);
-                            }}
-                        />
-                    </form>
-                </div>
-            </div>
-        </div>
+                        <SearchIcon fontSize="medium" />
+                    </IconButton>
+                </Tooltip>
+            </Box>
+
+            <Slide 
+                direction="down" 
+                in={open} 
+                timeout={400}
+                mountOnEnter
+                unmountOnExit
+            >
+                <Box
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        position: "fixed",
+                        top: isMobile ? 40 : 65,
+                        left: 0,
+                        width: "100%",
+                        background: "transparent",
+                        height: isMobile ? 80 : 70,
+                        py: 2,
+                    }}
+                    data-aos="fade-down"
+                >
+                    <Box sx={{ 
+                        width: "100%", 
+                        maxWidth: "lg", 
+                        mx: "auto", 
+                        px: 2 
+                    }}>
+                        <form onSubmit={handleSubmit}>
+                            <TextField
+                                inputRef={inputRef}
+                                type="text"
+                                placeholder="Search the ACM UoBD Website..."
+                                fullWidth
+                                onBlur={(e) => {
+                                    if (!e.relatedTarget) setOpen(false);
+                                }}
+                                sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                        borderRadius: '50px',
+                                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                                        color: '#000',
+                                        padding: '0px',
+                                        transition: 'all 0.3s ease',
+                                        '&:hover': {
+                                            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                                            boxShadow: 'none',
+                                        },
+                                        '&.Mui-focused': {
+                                            backgroundColor: '#fff',
+                                            boxShadow: 'none',
+                                            '& fieldset': {
+                                                borderColor: 'transparent',
+                                            },
+                                        },
+                                        '& fieldset': {
+                                            border: 'none',
+                                        },
+                                    },
+                                    '& .MuiInputBase-input': {
+                                        color: '#000',
+                                        padding: '0.6rem 1.2rem',
+                                        '&::placeholder': {
+                                            color: 'rgba(0, 0, 0, 0.5)',
+                                            opacity: 1,
+                                        },
+                                    },
+                                }}
+                            />
+                        </form>
+                    </Box>
+                </Box>
+            </Slide>
+        </Box>
     );
 };
 
