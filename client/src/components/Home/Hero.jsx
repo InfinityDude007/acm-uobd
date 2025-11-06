@@ -47,9 +47,7 @@ const Hero = () => {
                     }}
                 >
                     <Grid
-                        item
-                        xs={12}
-                        lg={6}
+                        size={{ xs: 12, lg: 6 }}
                         sx={{
                             alignSelf: "center",
                             textAlign: { xs: "left", lg: "left" },
@@ -165,9 +163,7 @@ const Hero = () => {
 
                     {!isMobile &&
                         <Grid
-                            item
-                            xs={12}
-                            lg={6}
+                            size={{ xs: 12, lg: 6 }}
                             sx={{
                                 alignSelf: "center",
                                 display: "flex",
