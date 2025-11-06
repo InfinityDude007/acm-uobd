@@ -23,9 +23,10 @@ const baseColors = {
     bgPaperDark: "#141a29",
     textPrimaryLight: "#ffffff",
     textSecondaryLight: "#212529",
+    textTertiaryLight: "rgba(255,255,255,0.6)",
     textPrimaryDark: "#ffffff",
     textSecondaryDark: "rgba(255,255,255,0.8)",
-    dividerLight: "rgba(0,0,0,0.1)",
+    dividerLight: "rgba(255,255,255,0.2)",
     dividerDark: "rgba(255,255,255,0.1)",
 };
 
@@ -47,6 +48,7 @@ export const getDesignTokens = (mode) => ({
         text: {
             primary: mode === "light" ? baseColors.textPrimaryLight : baseColors.textPrimaryDark,
             secondary: mode === "light" ? baseColors.textSecondaryLight : baseColors.textSecondaryDark,
+            tertiary: baseColors.textTertiaryLight
         },
         divider: mode === "light" ? baseColors.dividerLight: baseColors.dividerDark,
     },
