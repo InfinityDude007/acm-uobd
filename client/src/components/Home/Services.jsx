@@ -73,23 +73,6 @@ const Services = () => {
           }}
           data-aos="fade-down"
         >
-          <Box
-            component="span"
-            sx={{
-              display: "inline-block",
-              border: `1px solid ${theme.palette.primary.main}`,
-              borderRadius: "50px",
-              px: 2,
-              py: 0.5,
-              mb: 2,
-              fontSize: "0.875rem",
-              fontWeight: 500,
-              color: theme.palette.primary.main,
-              backgroundColor: "transparent",
-            }}
-          >
-            Our Services
-          </Box>
           <Typography
             variant="h2"
             component="h1"
@@ -100,13 +83,13 @@ const Services = () => {
               mb: 2,
             }}
           >
-            What We Provide
+            What We Do
           </Typography>
           <Typography
             variant="body1"
             sx={{
               color: theme.palette.mode === "light" ? "text.secondary" : "rgba(255,255,255,0.7)",
-              maxWidth: "600px",
+              maxWidth: "1050px",
               mx: "auto",
               fontSize: "1.05rem",
               lineHeight: 1.6,
@@ -121,11 +104,8 @@ const Services = () => {
         {/* Services Grid */}
         <Grid container spacing={3} justifyContent="center">
           {services.map((service, index) => (
-            <Grid 
-              item 
-              xs={12} 
-              sm={6} 
-              md={3}
+            <Grid  
+              size={{ xs: 12, sm: 6, md: 3 }}
               key={index}
               data-aos="fade-up"
               data-aos-delay={service.delay}
@@ -154,12 +134,25 @@ const Services = () => {
                     transform: "translateY(-8px)",
                     boxShadow: "0 8px 25px rgba(0,0,0,0.15)", // Enhanced shadow on hover
                     borderColor: theme.palette.primary.main,
+                    cursor: "default",
+                  },
+                  "&:hover .iconContainer": {
+                    backgroundColor: theme.palette.primary.main,
+                    transform: "scale(1.05)"
+                  },
+                  ".icon" : {
+                    color: theme.palette.primary.main,
+                  },
+                  "&:hover .icon": {
+                    color: theme.palette.text.primary,
+                    transform: "scale(1.2) rotate(10deg)"
                   },
                 }}
               >
                 <CardContent sx={{ p: 0, flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
                   {/* Icon Container - Bigger */}
                   <Box
+                    className="iconContainer"
                     sx={{
                       width: 80,
                       height: 80,
@@ -173,19 +166,14 @@ const Services = () => {
                       mx: "auto",
                       mb: 3,
                       transition: "all 0.3s ease",
-                      "&:hover": {
-                        backgroundColor: theme.palette.mode === "light" 
-                          ? "rgba(25, 118, 210, 0.15)" 
-                          : "rgba(25, 118, 210, 0.3)",
-                        transform: "scale(1.05)",
-                      },
                     }}
                   >
                     <FontAwesomeIcon 
                       icon={service.icon} 
+                      className="icon"
                       style={{
                         fontSize: "2rem", // Bigger icon
-                        color: theme.palette.primary.main,
+                        transition: "all 0.3s ease"
                       }} 
                     />
                   </Box>
