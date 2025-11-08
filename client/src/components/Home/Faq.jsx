@@ -173,11 +173,11 @@ const FAQSection = () => {
                     "&:hover": {
                       borderColor: theme.palette.primary.main,
                       transform: "translateY(-2px)",
-                      boxShadow: "0 4px 12px rgba(19,99,198,0.08)",
+                      boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
                     },
                     "&.Mui-expanded": {
                       borderColor: theme.palette.primary.main,
-                      boxShadow: "0 4px 12px rgba(19,99,198,0.15)",
+                      boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
                     },
                   }}
                 >
@@ -264,11 +264,11 @@ const FAQSection = () => {
                       "&:hover": {
                         borderColor: theme.palette.primary.main,
                         transform: "translateY(-2px)",
-                        boxShadow: "0 4px 12px rgba(19,99,198,0.08)",
+                        boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
                       },
                       "&.Mui-expanded": {
                         borderColor: theme.palette.primary.main,
-                        boxShadow: "0 4px 12px rgba(19,99,198,0.15)",
+                        boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
                       },
                     }}
                   >
