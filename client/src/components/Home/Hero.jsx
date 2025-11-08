@@ -79,7 +79,7 @@ const Hero = () => {
                             data-aos="fade-right"
                             data-aos-delay="200"
                         >
-                            Welcome to the ACM Student Chapter at the University of Birmingham
+                            Welcome to the <strong>Association of Computing Machinery (ACM) Student Chapter</strong> at the University of Birmingham
                             Dubai, a community connecting tech enthusiasts and showcasing the
                             brilliant work of our students. Explore, connect, and create with
                             us!
