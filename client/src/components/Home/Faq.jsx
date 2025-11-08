@@ -127,7 +127,7 @@ const FAQSection = () => {
             mx="auto"
             sx={{
               color: theme.palette.text.secondary,
-              maxWidth: 700,
+              maxWidth: 900,
               lineHeight: 1.7,
             }}
           >
