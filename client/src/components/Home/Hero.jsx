@@ -13,7 +13,6 @@ const Hero = () => {
     useEffect(() => {
         AOS.init({
             duration: 900,
-            once: true,
         });
     }, []);
 
@@ -32,7 +31,6 @@ const Hero = () => {
                 fontFamily: theme.typography.fontFamily,
                 color: theme.palette.text.primary,
             }}
-            data-aos="fade"
         >
             <Container
                 sx={{ paddingTop: 8 }}
