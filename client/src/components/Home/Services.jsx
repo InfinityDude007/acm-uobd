@@ -145,7 +145,7 @@ const Services = () => {
                   },
                   "&:hover .icon": {
                     color: theme.palette.text.primary,
-                    transform: "scale(1.2) rotate(10deg)"
+                    transform: "scale(1.2) rotate(20deg)"
                   },
                 }}
               >
