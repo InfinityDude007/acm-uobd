@@ -9,15 +9,7 @@ import {
     Card,
     CardContent,
 } from "@mui/material";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faCheck,
-    faEnvelope,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-    faInstagram,
-    faLinkedinIn,
-} from "@fortawesome/free-brands-svg-icons";
+import { Instagram, LinkedIn, WhereToVote, Email } from "@mui/icons-material";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import aboutImage from "../../assets/img/Innovation-amico.png";
@@ -125,21 +117,6 @@ const About = () => {
                         data-aos-duration="1000"
                     >
                         <Box sx={{ maxWidth: "650px" }}>
-                            {/* About Us Badge */}
-                            <Typography
-                                component="div"
-                                sx={{
-                                    display: "inline-block",
-                                    color: theme.palette.primary.main,
-                                    fontSize: "1.1rem",
-                                    fontWeight: 500,
-                                    mb: 1.5,
-                                    letterSpacing: "0.5px",
-                                }}
-                            >
-                                About Us
-                            </Typography>
-
                             <Typography
                                 variant="h2"
                                 component="h2"
@@ -196,7 +173,7 @@ const About = () => {
                                     sx={{
                                         fontWeight: 700,
                                         mb: 2.5,
-                                        fontSize: "1.4rem",
+                                        fontSize: "1.5rem",
                                         color: theme.palette.mode === "light" 
                                             ? "#000000" 
                                             : theme.palette.text.primary,
@@ -205,14 +182,13 @@ const About = () => {
                                     Our Goals
                                 </Typography>
 
-                                <Grid container spacing={1.5}>
+                                <Grid container spacing={2}>
                                     {/* First Column */}
-                                    <Grid size={{ xs: 12, md: 6 }}>
+                                    <Grid size={{ xs: 12, md: 4.5 }} mr={{ xs: 0, md: 6 }}>
                                         {['Connecting Students', 'Outreach Initiatives', 'Career Advancement'].map((goal, index) => (
                                             <Card 
                                                 key={goal}
                                                 sx={{ 
-                                                    mb: 1.5,
                                                     boxShadow: 'none',
                                                     border: `1px solid ${theme.palette.divider}`,
                                                     borderRadius: 1.5,
@@ -221,18 +197,14 @@ const About = () => {
                                                     '&:hover': {
                                                         borderColor: theme.palette.primary.main,
                                                         transform: 'translateY(-2px)',
+                                                        cursor: "default",
+                                                        boxShadow: "0 6px 15px rgba(0,0,0,0.1)"
                                                     }
                                                 }}
                                             >
-                                                <CardContent sx={{ p: 2, '&:last-child': { pb: 2 } }}>
+                                                <CardContent sx={{ p: 1.5, '&:last-child': { pb: 1.5 } }}>
                                                     <Box sx={{ display: "flex", alignItems: "center", gap: 1.25 }}>
-                                                        <FontAwesomeIcon 
-                                                            icon={faCheck} 
-                                                            style={{ 
-                                                                color: theme.palette.primary.main,
-                                                                fontSize: "1rem"
-                                                            }} 
-                                                        />
+                                                        <WhereToVote color="primary" />
                                                         <Typography
                                                             variant="body1"
                                                             sx={{
@@ -252,12 +224,11 @@ const About = () => {
                                     </Grid>
                                     
                                     {/* Second Column */}
-                                    <Grid size={{ xs: 12, md: 6 }}>
+                                    <Grid size={{ xs: 12, md: 4.5 }}>
                                         {['Practical Experience', 'Skill Development', 'Showcasing Innovation'].map((goal, index) => (
                                             <Card 
                                                 key={goal}
                                                 sx={{ 
-                                                    mb: 1.5,
                                                     boxShadow: 'none',
                                                     border: `1px solid ${theme.palette.divider}`,
                                                     borderRadius: 1.5,
@@ -266,18 +237,14 @@ const About = () => {
                                                     '&:hover': {
                                                         borderColor: theme.palette.primary.main,
                                                         transform: 'translateY(-2px)',
+                                                        cursor: "default",
+                                                        boxShadow: "0 6px 15px rgba(0,0,0,0.1)"
                                                     }
                                                 }}
                                             >
-                                                <CardContent sx={{ p: 2, '&:last-child': { pb: 2 } }}>
+                                                <CardContent sx={{ p: 1.5, '&:last-child': { pb: 1.5 } }}>
                                                     <Box sx={{ display: "flex", alignItems: "center", gap: 1.25 }}>
-                                                        <FontAwesomeIcon 
-                                                            icon={faCheck} 
-                                                            style={{ 
-                                                                color: theme.palette.primary.main,
-                                                                fontSize: "1rem"
-                                                            }} 
-                                                        />
+                                                        <WhereToVote color="primary" />
                                                         <Typography
                                                             variant="body1"
                                                             sx={{
@@ -335,16 +302,16 @@ const About = () => {
                                 </Button>
 
                                 {[
-                                    { icon: faInstagram, href: "https://www.instagram.com/acm_uobd/" },
-                                    { icon: faLinkedinIn, href: "https://www.linkedin.com/company/uobd-acm-chapter/" },
-                                    { icon: faEnvelope, href: "mailto:acmuobd@gmail.com" }
+                                    { icon: <Instagram />, href: "https://www.instagram.com/acm_uobd/" },
+                                    { icon: <LinkedIn />, href: "https://www.linkedin.com/company/uobd-acm-chapter/" },
+                                    { icon: <Email />, href: "mailto:acmuobd@gmail.com" }
                                 ].map((social, index) => (
                                     <Box
                                         key={index}
                                         component="a"
                                         href={social.href}
-                                        target={social.icon !== faEnvelope ? "_blank" : undefined}
-                                        rel={social.icon !== faEnvelope ? "noopener noreferrer" : undefined}
+                                        target={social.icon !== Email ? "_blank" : undefined}
+                                        rel={social.icon !== Email ? "noopener noreferrer" : undefined}
                                         sx={{
                                             width: 45,
                                             height: 45,
@@ -361,10 +328,11 @@ const About = () => {
                                                 backgroundColor: theme.palette.primary.main,
                                                 color: "#ffffff",
                                                 transform: "translateY(-2px)",
+                                                boxShadow: "0 8px 30px rgba(0,0,0,0.2)"
                                             }
                                         }}
                                     >
-                                        <FontAwesomeIcon icon={social.icon} />
+                                        {social.icon}
                                     </Box>
                                 ))}
                             </Box>
