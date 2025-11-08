@@ -102,6 +102,7 @@ const Footer = () => {
                 >
                     
                     <Grid
+                        id="socials"
                         size={{ xs: 12, md: 6, lg: 3 }}
                         sx={{
                             display: "flex",
@@ -112,7 +113,7 @@ const Footer = () => {
                         data-aos="fade-right"
                     >
                         <Typography variant="h5" sx={{ color: theme.palette.text.primary, mb: 2, fontWeight: 600 }}>
-                            Get In Touch
+                            Our Socials
                         </Typography>
                         <Box
                             sx={{
