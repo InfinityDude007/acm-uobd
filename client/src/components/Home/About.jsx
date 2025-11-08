@@ -44,9 +44,7 @@ const About = () => {
                 <Grid container spacing={5} alignItems="center">
                     {/* Image Section - Left Side */}
                     <Grid 
-                        item 
-                        xs={12} 
-                        md={5}
+                        size={{ xs: 12, md: 5 }}
                         sx={{
                             display: 'flex',
                             justifyContent: { xs: "center", md: "flex-start" },
@@ -122,9 +120,7 @@ const About = () => {
 
                     {/* Content Section - Right Side */}
                     <Grid 
-                        item 
-                        xs={12} 
-                        md={7}
+                        size={{ xs: 12, md: 7 }}
                         data-aos="fade-left"
                         data-aos-duration="1000"
                     >
@@ -211,7 +207,7 @@ const About = () => {
 
                                 <Grid container spacing={1.5}>
                                     {/* First Column */}
-                                    <Grid item xs={12} sm={6}>
+                                    <Grid size={{ xs: 12, md: 6 }}>
                                         {['Connecting Students', 'Outreach Initiatives', 'Career Advancement'].map((goal, index) => (
                                             <Card 
                                                 key={goal}
@@ -256,7 +252,7 @@ const About = () => {
                                     </Grid>
                                     
                                     {/* Second Column */}
-                                    <Grid item xs={12} sm={6}>
+                                    <Grid size={{ xs: 12, md: 6 }}>
                                         {['Practical Experience', 'Skill Development', 'Showcasing Innovation'].map((goal, index) => (
                                             <Card 
                                                 key={goal}
