@@ -323,7 +323,7 @@ const Portfolio = () => {
               sx={{
                 fontWeight: 700,
                 fontSize: { xs: '2.5rem', md: '3rem' },
-                color: theme.palette.text.primary,
+                color: theme.palette.text.secondary,
                 mb: 2,
               }}
             >
@@ -348,7 +348,7 @@ const Portfolio = () => {
     <Box
       component="section"
       sx={{
-        py: 10,
+        py: 5,
         width: '100%',
         backgroundColor: theme.palette.background.default,
       }}
@@ -358,7 +358,7 @@ const Portfolio = () => {
         <Box
           sx={{
             textAlign: 'center',
-            mb: 8,
+            mb: 3,
           }}
           data-aos="fade-up"
         >
@@ -368,9 +368,9 @@ const Portfolio = () => {
             sx={{
               fontWeight: 700,
               fontSize: { xs: '2.5rem', md: '3rem' },
-              color: theme.palette.text.primary,
-              mb: 2,
-              lineHeight: 1.2,
+              color: theme.palette.text.secondary,
+              mb: 1,
+              lineHeight: 1.7,
             }}
           >
             Past Events
@@ -380,10 +380,10 @@ const Portfolio = () => {
             variant="body1"
             sx={{
               color: theme.palette.mode === 'light' ? 'text.secondary' : 'rgba(255,255,255,0.7)',
-              maxWidth: '600px',
+              maxWidth: '870px',
               mx: 'auto',
-              fontSize: '1.1rem',
-              lineHeight: 1.6,
+              fontSize: '1.05rem',
+              lineHeight: 1.7,
             }}
           >
             Explore our journey through memorable events, workshops, and conferences that shaped our community.
