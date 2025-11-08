@@ -33,7 +33,7 @@ const About = () => {
             }}
         >
             <Container maxWidth="lg">
-                <Grid container spacing={5} alignItems="center">
+                <Grid container spacing={15} alignItems="center">
                     {/* Image Section - Left Side */}
                     <Grid 
                         size={{ xs: 12, md: 5 }}
@@ -59,42 +59,6 @@ const About = () => {
                                     transform: 'translateY(-5px)',
                                     boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
                                 },
-                                '&::before': {
-                                    content: '""',
-                                    position: 'absolute',
-                                    top: 0,
-                                    left: 0,
-                                    right: 0,
-                                    bottom: 0,
-                                    background: `
-                                        linear-gradient(90deg, transparent 0%, transparent calc(25% - 2px), rgba(255,255,255,0.8) calc(25% - 2px), rgba(255,255,255,0.8) calc(25% + 2px), transparent calc(25% + 2px), transparent calc(50% - 2px), rgba(255,255,255,0.8) calc(50% - 2px), rgba(255,255,255,0.8) calc(50% + 2px), transparent calc(50% + 2px), transparent calc(75% - 2px), rgba(255,255,255,0.8) calc(75% - 2px), rgba(255,255,255,0.8) calc(75% + 2px), transparent calc(75% + 2px)),
-                                        linear-gradient(0deg, transparent 0%, transparent calc(25% - 2px), rgba(255,255,255,0.8) calc(25% - 2px), rgba(255,255,255,0.8) calc(25% + 2px), transparent calc(25% + 2px), transparent calc(50% - 2px), rgba(255,255,255,0.8) calc(50% - 2px), rgba(255,255,255,0.8) calc(50% + 2px), transparent calc(50% + 2px), transparent calc(75% - 2px), rgba(255,255,255,0.8) calc(75% - 2px), rgba(255,255,255,0.8) calc(75% + 2px), transparent calc(75% + 2px))
-                                    `,
-                                    zIndex: 1,
-                                    pointerEvents: 'none',
-                                },
-                                '&::after': {
-                                    content: '""',
-                                    position: 'absolute',
-                                    top: 0,
-                                    left: 0,
-                                    right: 0,
-                                    bottom: 0,
-                                    background: `
-                                        radial-gradient(circle at 12.5% 12.5%, rgba(0,0,0,0.4) 0%, transparent 18%),
-                                        radial-gradient(circle at 87.5% 12.5%, rgba(0,0,0,0.4) 0%, transparent 18%),
-                                        radial-gradient(circle at 12.5% 87.5%, rgba(0,0,0,0.4) 0%, transparent 18%),
-                                        radial-gradient(circle at 87.5% 87.5%, rgba(0,0,0,0.4) 0%, transparent 18%),
-                                        radial-gradient(circle at 37.5% 12.5%, rgba(0,0,0,0.3) 0%, transparent 18%),
-                                        radial-gradient(circle at 62.5% 12.5%, rgba(0,0,0,0.3) 0%, transparent 18%),
-                                        radial-gradient(circle at 87.5% 37.5%, rgba(0,0,0,0.3) 0%, transparent 18%),
-                                        radial-gradient(circle at 87.5% 62.5%, rgba(0,0,0,0.3) 0%, transparent 18%),
-                                        radial-gradient(circle at 12.5% 62.5%, rgba(0,0,0,0.3) 0%, transparent 18%),
-                                        radial-gradient(circle at 62.5% 87.5%, rgba(0,0,0,0.3) 0%, transparent 18%)
-                                    `,
-                                    zIndex: 2,
-                                    pointerEvents: 'none',
-                                }
                             }}
                         >
                             <Box
@@ -102,8 +66,8 @@ const About = () => {
                                 src={aboutImage}
                                 alt="Innovation Illustration"
                                 sx={{
-                                    width: "100%",
-                                    height: "100%",
+                                    width: "105%",
+                                    height: "105%",
                                     objectFit: "cover",
                                 }}
                             />
@@ -186,9 +150,9 @@ const About = () => {
                                                 key={goal}
                                                 sx={{ 
                                                     boxShadow: 'none',
-                                                    border: `1px solid ${theme.palette.divider}`,
+                                                    border: `1px solid transparent`,
                                                     borderRadius: 1.5,
-                                                    backgroundColor: 'transparent',
+                                                    background: theme.palette.background.default,
                                                     transition: 'all 0.2s ease',
                                                     '&:hover': {
                                                         borderColor: theme.palette.primary.main,
@@ -226,9 +190,9 @@ const About = () => {
                                                 key={goal}
                                                 sx={{ 
                                                     boxShadow: 'none',
-                                                    border: `1px solid ${theme.palette.divider}`,
+                                                    border: `1px solid transparent`,
                                                     borderRadius: 1.5,
-                                                    backgroundColor: 'transparent',
+                                                    background: theme.palette.background.default,
                                                     transition: 'all 0.2s ease',
                                                     '&:hover': {
                                                         borderColor: theme.palette.primary.main,
