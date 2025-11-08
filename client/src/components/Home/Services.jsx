@@ -68,7 +68,7 @@ const Services = () => {
         {/* Header Section */}
         <Box
           sx={{
-            textAlign: "center",
+            textAlign: { xs: "left", md: "center" },
             mb: 4,
           }}
           data-aos="fade-down"

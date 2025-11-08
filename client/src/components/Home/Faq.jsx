@@ -110,7 +110,7 @@ const FAQSection = () => {
       }}
     >
       <Container maxWidth="lg">
-        <Box textAlign="center" mb={6} data-aos="fade-down">
+        <Box textAlign={{ xs: "left", md: "center" }} mb={6} data-aos="fade-down">
           <Typography
             variant="h2"
             sx={{
@@ -318,7 +318,7 @@ const FAQSection = () => {
                     >
                       <Typography
                         sx={{
-                          fontSize: "10.5rem",
+                          fontSize: "1.05rem",
                           color: theme.palette.text.secondary,
                           lineHeight: 1.7,
                         }}
