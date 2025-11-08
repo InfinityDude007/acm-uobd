@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Box, Container, Grid, Typography, Tooltip, useTheme, useMediaQuery } from "@mui/material";
-import { Instagram, LinkedIn, LocationOn, Email, North } from "@mui/icons-material";
+import { Instagram, LinkedIn, LocationOn, North } from "@mui/icons-material";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import logo from "../assets/img/dual.png";
