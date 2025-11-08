@@ -92,7 +92,7 @@ const Services = () => {
               maxWidth: "1050px",
               mx: "auto",
               fontSize: "1.05rem",
-              lineHeight: 1.6,
+              lineHeight: 1.7,
             }}
           >
             Discover how ACM UoBD helps students enhance their technical,

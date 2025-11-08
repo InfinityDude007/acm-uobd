@@ -122,7 +122,7 @@ const About = () => {
                                 component="h2"
                                 sx={{
                                     mb: 3.5,
-                                    fontSize: { xs: "2.2rem", md: "2.75rem" },
+                                    fontSize: { xs: "2rem", md: "2.5rem" },
                                     fontWeight: 700,
                                     color: theme.palette.mode === "light" 
                                         ? "#000000" 
@@ -139,9 +139,7 @@ const About = () => {
                                     mb: 2.5,
                                     lineHeight: 1.7,
                                     fontSize: "1.05rem",
-                                    color: theme.palette.mode === "light" 
-                                        ? "rgba(0,0,0,0.75)" 
-                                        : theme.palette.text.secondary,
+                                    color: theme.palette.text.secondary,
                                 }}
                             >
                                 Our mission is to cultivate a dynamic community of students at
@@ -174,9 +172,7 @@ const About = () => {
                                         fontWeight: 700,
                                         mb: 2.5,
                                         fontSize: "1.5rem",
-                                        color: theme.palette.mode === "light" 
-                                            ? "#000000" 
-                                            : theme.palette.text.primary,
+                                        color: theme.palette.text.secondary,
                                     }}
                                 >
                                     Our Goals
@@ -202,14 +198,14 @@ const About = () => {
                                                     }
                                                 }}
                                             >
-                                                <CardContent sx={{ p: 1.5, '&:last-child': { pb: 1.5 } }}>
+                                                <CardContent sx={{ p: 1, '&:last-child': { pb: 1 } }}>
                                                     <Box sx={{ display: "flex", alignItems: "center", gap: 1.25 }}>
                                                         <WhereToVote color="primary" />
                                                         <Typography
                                                             variant="body1"
                                                             sx={{
                                                                 fontWeight: 500,
-                                                                fontSize: "1rem",
+                                                                fontSize: "1.05rem",
                                                                 color: theme.palette.mode === "light" 
                                                                     ? "#000000" 
                                                                     : theme.palette.text.primary,
@@ -242,14 +238,14 @@ const About = () => {
                                                     }
                                                 }}
                                             >
-                                                <CardContent sx={{ p: 1.5, '&:last-child': { pb: 1.5 } }}>
+                                                <CardContent sx={{ p: 1, '&:last-child': { pb: 1 } }}>
                                                     <Box sx={{ display: "flex", alignItems: "center", gap: 1.25 }}>
                                                         <WhereToVote color="primary" />
                                                         <Typography
                                                             variant="body1"
                                                             sx={{
                                                                 fontWeight: 500,
-                                                                fontSize: "1rem",
+                                                                fontSize: "1.05rem",
                                                                 color: theme.palette.mode === "light" 
                                                                     ? "#000000" 
                                                                     : theme.palette.text.primary,
@@ -283,7 +279,7 @@ const About = () => {
                                         py: 1.25,
                                         borderRadius: "50px",
                                         textTransform: "none",
-                                        fontSize: "1rem",
+                                        fontSize: "1.05rem",
                                         fontWeight: 600,
                                         backgroundColor: theme.palette.primary.main,
                                         color: "#ffffff",

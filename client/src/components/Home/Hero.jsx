@@ -72,7 +72,7 @@ const Hero = () => {
                             sx={{
                                 marginBottom: 3,
                                 fontSize: { xs: "0.8rem", sm: "0.8rem", lg: "1rem" },
-                                lineHeight: 1.5,
+                                lineHeight: 1.7,
                                 fontWeight: 500,
                                 fontFamily: theme.typography.fontFamily,
                             }}

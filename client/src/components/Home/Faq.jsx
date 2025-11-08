@@ -129,6 +129,7 @@ const FAQSection = () => {
               color: theme.palette.text.secondary,
               maxWidth: 900,
               lineHeight: 1.7,
+              fontSize: "1.05rem",
             }}
           >
             Everything you need to know about the ACM Student Chapter. Can’t
@@ -201,7 +202,6 @@ const FAQSection = () => {
                     }
                     sx={{
                       px: 2.5,
-                      py: 1.5,
                       "& .MuiAccordionSummary-content": { margin: 0 },
                     }}
                   >
@@ -218,7 +218,7 @@ const FAQSection = () => {
                   <AccordionDetails
                     sx={{
                       px: 2.5,
-                      pb: 2.5,
+                      py: 2.5,
                       borderRadius: "0 0 12px 12px",
                       backgroundColor:
                         theme.palette.mode === "light"
@@ -228,9 +228,9 @@ const FAQSection = () => {
                   >
                     <Typography
                       sx={{
-                        fontSize: "0.95rem",
+                        fontSize: "1.05rem",
                         color: theme.palette.text.secondary,
-                        lineHeight: 1.8,
+                        lineHeight: 1.7,
                       }}
                     >
                       {item.answer}
@@ -292,7 +292,6 @@ const FAQSection = () => {
                       }
                       sx={{
                         px: 2.5,
-                        py: 1.5,
                         "& .MuiAccordionSummary-content": { margin: 0 },
                       }}
                     >
@@ -309,7 +308,7 @@ const FAQSection = () => {
                     <AccordionDetails
                       sx={{
                         px: 2.5,
-                        pb: 2.5,
+                        py: 2.5,
                         borderRadius: "0 0 12px 12px",
                         backgroundColor:
                           theme.palette.mode === "light"
@@ -319,9 +318,9 @@ const FAQSection = () => {
                     >
                       <Typography
                         sx={{
-                          fontSize: "0.95rem",
+                          fontSize: "10.5rem",
                           color: theme.palette.text.secondary,
-                          lineHeight: 1.8,
+                          lineHeight: 1.7,
                         }}
                       >
                         {item.answer}
