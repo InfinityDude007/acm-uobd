@@ -194,7 +194,7 @@ const Portfolio = () => {
               }}
             />
             <ImageOverlay className="hover-overlay">
-              <Typography variant="body2" sx={{ fontWeight: 600, mb: 1 }}>
+              <Typography variant="body2" sx={{ fontWeight: 600, mb: 1, fontSize: "0.95rem" }}>
                 View all events
               </Typography>
               <ArrowForward className="hover-icon" sx={{ transition: "transform 0.3s ease" }} />
@@ -215,11 +215,11 @@ const Portfolio = () => {
           >
             {/* Title - Fixed 2 lines */}
             <Typography 
-              variant="h6" 
+              variant="h5" // Changed from h6 to h5 to match Services
               component="h2" 
               sx={{ 
                 fontFamily: '"Ubuntu", sans-serif',
-                fontWeight: 700,
+                fontWeight: 600, // Changed from 700 to 600 to match Services
                 color: "#1363c6",
                 mb: 2,
                 lineHeight: 1.3,
@@ -227,7 +227,8 @@ const Portfolio = () => {
                 display: "-webkit-box",
                 WebkitLineClamp: 2,
                 WebkitBoxOrient: "vertical",
-                overflow: "hidden"
+                overflow: "hidden",
+                fontSize: "1.25rem" // Same as Services title
               }}
             >
               {item.title}
@@ -235,8 +236,7 @@ const Portfolio = () => {
             
             {/* Description - Fixed 6 lines */}
             <Typography 
-              variant="body2" 
-              color="text.secondary" 
+              variant="body1"
               sx={{ 
                 fontFamily: '"Ubuntu", sans-serif',
                 flexGrow: 1,
@@ -245,7 +245,9 @@ const Portfolio = () => {
                 display: "-webkit-box",
                 WebkitLineClamp: 6,
                 WebkitBoxOrient: "vertical",
-                overflow: "hidden"
+                overflow: "hidden",
+                color: "text.secondary",
+                fontSize: "0.95rem" // Same as Services description
               }}
             >
               {item.description || "No description available for this event."}
@@ -322,7 +324,7 @@ const Portfolio = () => {
               component="h1"
               sx={{
                 fontWeight: 700,
-                fontSize: { xs: '2.5rem', md: '3rem' },
+                fontSize: { xs: "2rem", md: "2.5rem" }, // Same as Services header
                 color: theme.palette.text.secondary,
                 mb: 2,
               }}
@@ -333,7 +335,7 @@ const Portfolio = () => {
               variant="body1"
               sx={{
                 color: theme.palette.mode === 'light' ? 'text.secondary' : 'rgba(255,255,255,0.7)',
-                fontSize: '1.1rem',
+                fontSize: "1.05rem", // Same as Services description
               }}
             >
               No past events available at the moment.
@@ -367,10 +369,10 @@ const Portfolio = () => {
             component="h1"
             sx={{
               fontWeight: 700,
-              fontSize: { xs: '2.5rem', md: '3rem' },
+              fontSize: { xs: "2rem", md: "2.5rem" }, // Same as Services header
               color: theme.palette.text.secondary,
               mb: 1,
-              lineHeight: 1.7,
+              lineHeight: 1.2,
             }}
           >
             Past Events
@@ -382,8 +384,8 @@ const Portfolio = () => {
               color: theme.palette.mode === 'light' ? 'text.secondary' : 'rgba(255,255,255,0.7)',
               maxWidth: '870px',
               mx: 'auto',
-              fontSize: '1.05rem',
-              lineHeight: 1.7,
+              fontSize: "1.05rem", // Same as Services description
+              lineHeight: 1.7, // Same as Services line height
             }}
           >
             Explore our journey through memorable events, workshops, and conferences that shaped our community.
