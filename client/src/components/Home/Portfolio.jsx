@@ -174,7 +174,7 @@ const Portfolio = () => {
   // Portfolio Item Component
   const PortfolioItem = ({ item }) => {
     return (
-      <Grid item xs={12} md={4} key={item.id} sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Grid size={{ xs: 12, md: 4 }} key={item.id} sx={{ display: 'flex', justifyContent: 'center' }}>
         <ModernEventCard 
           component="a"
           href="/events"
