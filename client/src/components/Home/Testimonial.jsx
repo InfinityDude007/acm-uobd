@@ -111,7 +111,7 @@ const TestimonialSection = () => {
                 component="h2"
                 sx={{
                   fontWeight: 700,
-                  fontSize: { xs: "2rem", md: "2.5rem" },
+                  fontSize: { xs: '2.5rem', md: '3rem' }, // Same as Portfolio header
                   color: theme.palette.text.secondary,
                   mb: 2,
                   lineHeight: 1.2,
@@ -123,8 +123,8 @@ const TestimonialSection = () => {
                 variant="body1"
                 sx={{
                   color: theme.palette.text.secondary,
-                  fontSize: "1.05rem",
-                  lineHeight: 1.7,
+                  fontSize: '1.1rem', // Same as Portfolio description
+                  lineHeight: 1.6, // Same as Portfolio line height
                 }}
               >
                 Discover what our valued members have to say about their experience 
@@ -138,16 +138,16 @@ const TestimonialSection = () => {
             <Box sx={{ 
               position: 'relative', 
               width: '100%', 
-              px: { xs: 4, md: 6, lg: 8 } // Increased padding to create more space
+              px: { xs: 4, md: 6, lg: 8 }
             }}>
-              {/* Navigation Arrows - Moved further out */}
+              {/* Navigation Arrows */}
               {maxSteps > 1 && (
                 <>
                   <NavigationButton
                     onClick={handleBack}
                     sx={{
                       position: 'absolute',
-                      left: { xs: -16, md: -28, lg: -32 }, // Increased negative margin
+                      left: { xs: -16, md: -28, lg: -32 },
                       top: '50%',
                       transform: 'translateY(-50%)',
                       zIndex: 2,
@@ -162,7 +162,7 @@ const TestimonialSection = () => {
                     onClick={handleNext}
                     sx={{
                       position: 'absolute',
-                      right: { xs: -16, md: -28, lg: -32 }, // Increased negative margin
+                      right: { xs: -16, md: -28, lg: -32 },
                       top: '50%',
                       transform: 'translateY(-50%)',
                       zIndex: 2,
@@ -208,8 +208,8 @@ const TestimonialSection = () => {
                       variant="body1"
                       sx={{
                         color: theme.palette.text.secondary,
-                        fontSize: "1.05rem",
-                        lineHeight: 1.7,
+                        fontSize: "1.05rem", // Same as Portfolio card description
+                        lineHeight: 1.7, // Same as Portfolio card line height
                         mb: 4,
                         fontStyle: "italic"
                       }}
@@ -233,9 +233,9 @@ const TestimonialSection = () => {
                         <Typography
                           variant="h6"
                           sx={{
-                            fontWeight: 600,
-                            color: theme.palette.text.secondary,
-                            fontSize: "1.1rem",
+                            fontWeight: 700, // Same as Portfolio card title weight
+                            color: theme.palette.primary.main, // Same as Portfolio card title color
+                            fontSize: "1.25rem", // Same as Portfolio card title size
                             mb: 0.5
                           }}
                         >
@@ -244,8 +244,8 @@ const TestimonialSection = () => {
                         <Typography
                           variant="body2"
                           sx={{
-                            color: theme.palette.primary.main,
-                            fontSize: "0.9rem"
+                            color: theme.palette.text.secondary,
+                            fontSize: "0.95rem" // Same as Portfolio card description
                           }}
                         >
                           {testimonials[activeStep].profession}
@@ -289,4 +289,4 @@ const TestimonialSection = () => {
   );
 };
 
-export default TestimonialSection;
+export default TestimonialSection;  
