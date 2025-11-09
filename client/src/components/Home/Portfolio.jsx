@@ -38,7 +38,7 @@ const Portfolio = () => {
   const IMAGE_HEIGHT = 240;
   const CONTENT_HEIGHT = 240;
 
-  // Modern Event Card with Service component shadows
+  // Modern Event Card with theme colors
   const ModernEventCard = styled(Card)(({ theme }) => ({
     height: `${CARD_HEIGHT}px`,
     width: `${CARD_WIDTH}px`,
@@ -46,7 +46,7 @@ const Portfolio = () => {
     flexDirection: "column",
     borderRadius: "20px",
     overflow: "hidden",
-    background: "white",
+    background: theme.palette.background.paper,
     transition: "all 0.3s ease",
     cursor: "pointer",
     boxShadow: "0 2px 8px rgba(0, 0, 0, 0.20)",
@@ -67,14 +67,14 @@ const Portfolio = () => {
     },
   }));
 
-  const CardImageWrapper = styled(Box)({
+  const CardImageWrapper = styled(Box)(({ theme }) => ({
     height: `${IMAGE_HEIGHT}px`,
     width: "100%",
     position: "relative",
     overflow: "hidden",
-    backgroundColor: "#f0f0f0",
+    backgroundColor: theme.palette.mode === 'light' ? "#f0f0f0" : theme.palette.background.default,
     flexShrink: 0
-  });
+  }));
 
   const CardImage = styled("img")({
     width: "100%",
@@ -101,6 +101,17 @@ const Portfolio = () => {
     color: "white",
     zIndex: 2
   });
+
+  // Navigation buttons with theme colors
+  const NavigationButton = styled(IconButton)(({ theme }) => ({
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.primary.main,
+    boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.primary.contrastText,
+    },
+  }));
 
   const fetchEvents = async () => {
     try {
@@ -215,12 +226,12 @@ const Portfolio = () => {
           >
             {/* Title - Fixed 2 lines */}
             <Typography 
-              variant="h5" // Changed from h6 to h5 to match Services
+              variant="h5"
               component="h2" 
               sx={{ 
                 fontFamily: '"Ubuntu", sans-serif',
-                fontWeight: 600, // Changed from 700 to 600 to match Services
-                color: "#1363c6",
+                fontWeight: 600,
+                color: theme.palette.primary.main,
                 mb: 2,
                 lineHeight: 1.3,
                 height: '64px',
@@ -228,7 +239,7 @@ const Portfolio = () => {
                 WebkitLineClamp: 2,
                 WebkitBoxOrient: "vertical",
                 overflow: "hidden",
-                fontSize: "1.25rem" // Same as Services title
+                fontSize: "1.25rem"
               }}
             >
               {item.title}
@@ -246,8 +257,8 @@ const Portfolio = () => {
                 WebkitLineClamp: 6,
                 WebkitBoxOrient: "vertical",
                 overflow: "hidden",
-                color: "text.secondary",
-                fontSize: "0.95rem" // Same as Services description
+                color: theme.palette.text.secondary,
+                fontSize: "0.95rem"
               }}
             >
               {item.description || "No description available for this event."}
@@ -298,6 +309,10 @@ const Portfolio = () => {
               borderRadius: '50px',
               px: 3,
               py: 1,
+              backgroundColor: theme.palette.primary.main,
+              '&:hover': {
+                backgroundColor: theme.palette.mode === 'light' ? '#0f4e9c' : '#0b55a4',
+              }
             }}
           >
             Try Again
@@ -324,7 +339,7 @@ const Portfolio = () => {
               component="h1"
               sx={{
                 fontWeight: 700,
-                fontSize: { xs: "2rem", md: "2.5rem" }, // Same as Services header
+                fontSize: { xs: "2rem", md: "2.5rem" },
                 color: theme.palette.text.secondary,
                 mb: 2,
               }}
@@ -334,8 +349,8 @@ const Portfolio = () => {
             <Typography
               variant="body1"
               sx={{
-                color: theme.palette.mode === 'light' ? 'text.secondary' : 'rgba(255,255,255,0.7)',
-                fontSize: "1.05rem", // Same as Services description
+                color: theme.palette.text.secondary,
+                fontSize: "1.05rem",
               }}
             >
               No past events available at the moment.
@@ -369,7 +384,7 @@ const Portfolio = () => {
             component="h1"
             sx={{
               fontWeight: 700,
-              fontSize: { xs: "2rem", md: "2.5rem" }, // Same as Services header
+              fontSize: { xs: "2rem", md: "2.5rem" },
               color: theme.palette.text.secondary,
               mb: 1,
               lineHeight: 1.2,
@@ -381,11 +396,11 @@ const Portfolio = () => {
           <Typography
             variant="body1"
             sx={{
-              color: theme.palette.mode === 'light' ? 'text.secondary' : 'rgba(255,255,255,0.7)',
+              color: theme.palette.text.secondary,
               maxWidth: '870px',
               mx: 'auto',
-              fontSize: "1.05rem", // Same as Services description
-              lineHeight: 1.7, // Same as Services line height
+              fontSize: "1.05rem",
+              lineHeight: 1.7,
             }}
           >
             Explore our journey through memorable events, workshops, and conferences that shaped our community.
@@ -395,13 +410,12 @@ const Portfolio = () => {
         <Box sx={{ 
           position: 'relative', 
           width: '100%',
-          // Add padding to push the cards inward and create space for buttons
           px: { xs: 2, md: 4, lg: 8 } 
         }}>
           {/* Navigation Arrows - Positioned relative to the padded container */}
           {maxSteps > 1 && (
             <>
-              <IconButton
+              <NavigationButton
                 onClick={handleBack}
                 sx={{
                   position: 'absolute',
@@ -409,15 +423,8 @@ const Portfolio = () => {
                   top: '50%',
                   transform: 'translateY(-50%)',
                   zIndex: 2,
-                  backgroundColor: '#ffffff',
-                  color: theme.palette.primary.main,
                   width: 56,
                   height: 56,
-                  boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
-                  '&:hover': {
-                    backgroundColor: theme.palette.primary.main,
-                    color: '#ffffff',
-                  },
                   [muiTheme.breakpoints.down('md')]: {
                     width: 48,
                     height: 48,
@@ -425,9 +432,9 @@ const Portfolio = () => {
                 }}
               >
                 <FontAwesomeIcon icon={faChevronLeft} />
-              </IconButton>
+              </NavigationButton>
 
-              <IconButton
+              <NavigationButton
                 onClick={handleNext}
                 sx={{
                   position: 'absolute',
@@ -435,15 +442,8 @@ const Portfolio = () => {
                   top: '50%',
                   transform: 'translateY(-50%)',
                   zIndex: 2,
-                  backgroundColor: '#ffffff',
-                  color: theme.palette.primary.main,
                   width: 56,
                   height: 56,
-                  boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
-                  '&:hover': {
-                    backgroundColor: theme.palette.primary.main,
-                    color: '#ffffff',
-                  },
                   [muiTheme.breakpoints.down('md')]: {
                     width: 48,
                     height: 48,
@@ -451,7 +451,7 @@ const Portfolio = () => {
                 }}
               >
                 <FontAwesomeIcon icon={faChevronRight} />
-              </IconButton>
+              </NavigationButton>
             </>
           )}
 
@@ -471,7 +471,6 @@ const Portfolio = () => {
               sx={{
                 transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
                 transform: slideDirection === 'right' ? 'translateX(0)' : 'translateX(0)',
-                // Additional padding to ensure cards don't touch edges
                 px: { xs: 1, md: 2 }
               }}
             >
@@ -493,7 +492,7 @@ const Portfolio = () => {
               sx={{
                 backgroundColor: 'transparent',
                 '& .MuiMobileStepper-dot': {
-                  backgroundColor: theme.palette.mode === 'light' ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.2)',
+                  backgroundColor: theme.palette.mode === 'light' ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.3)',
                   width: 12,
                   height: 12,
                   margin: '0 4px',
