@@ -30,7 +30,7 @@ const Portfolio = () => {
   const [pastEvents, setPastEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [slideDirection, setSlideDirection] = useState('right');
+  const [isAnimating, setIsAnimating] = useState(false);
 
   // Fixed dimensions - no flexibility
   const CARD_HEIGHT = 480;
@@ -111,6 +111,10 @@ const Portfolio = () => {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.primary.contrastText,
     },
+    '&.Mui-disabled': {
+      backgroundColor: theme.palette.background.paper,
+      color: theme.palette.action.disabled,
+    }
   }));
 
   const fetchEvents = async () => {
@@ -163,17 +167,23 @@ const Portfolio = () => {
   const maxSteps = Math.ceil(portfolioItems.length / itemsPerPage);
 
   const handleNext = () => {
-    setSlideDirection('right');
+    if (isAnimating) return;
+    
+    setIsAnimating(true);
     setTimeout(() => {
       setActiveStep((prevActiveStep) => (prevActiveStep + 1) % maxSteps);
-    }, 50);
+      setTimeout(() => setIsAnimating(false), 300);
+    }, 300);
   };
 
   const handleBack = () => {
-    setSlideDirection('left');
+    if (isAnimating) return;
+    
+    setIsAnimating(true);
     setTimeout(() => {
       setActiveStep((prevActiveStep) => (prevActiveStep - 1 + maxSteps) % maxSteps);
-    }, 50);
+      setTimeout(() => setIsAnimating(false), 300);
+    }, 300);
   };
 
   // Get current items for carousel
@@ -185,12 +195,15 @@ const Portfolio = () => {
   // Portfolio Item Component
   const PortfolioItem = ({ item }) => {
     return (
-      <Grid size={{ xs: 12, md: 4 }} key={item.id} sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Grid item xs={12} md={4} key={item.id} sx={{ display: 'flex', justifyContent: 'center' }}>
         <ModernEventCard 
           component="a"
           href="/events"
           sx={{ 
             textDecoration: 'none',
+            height: `${CARD_HEIGHT}px`,
+            width: `${CARD_WIDTH}px`,
+            minWidth: `${CARD_WIDTH}px`, // Prevent shrinking
           }}
           elevation={0}
         >
@@ -219,7 +232,7 @@ const Portfolio = () => {
               flexGrow: 1,
               display: "flex", 
               flexDirection: "column",
-              height: "240px",
+              height: `${CONTENT_HEIGHT}px`,
               overflow: "hidden",
               '&:last-child': { pb: 3 }
             }}
@@ -417,6 +430,7 @@ const Portfolio = () => {
             <>
               <NavigationButton
                 onClick={handleBack}
+                disabled={isAnimating}
                 sx={{
                   position: 'absolute',
                   left: { xs: -12, md: -20, lg: -24 },
@@ -436,6 +450,7 @@ const Portfolio = () => {
 
               <NavigationButton
                 onClick={handleNext}
+                disabled={isAnimating}
                 sx={{
                   position: 'absolute',
                   right: { xs: -12, md: -20, lg: -24 },
@@ -455,13 +470,14 @@ const Portfolio = () => {
             </>
           )}
 
-          {/* Carousel Items with inner padding */}
+          {/* Carousel Items - Simplified without animation that breaks layout */}
           <Box sx={{ 
             position: 'relative',
             overflow: 'hidden',
             minHeight: '520px',
             display: 'flex',
-            alignItems: 'center'
+            alignItems: 'center',
+            justifyContent: 'center'
           }}>
             <Grid 
               container 
@@ -469,9 +485,8 @@ const Portfolio = () => {
               justifyContent="center" 
               alignItems="flex-start"
               sx={{
-                transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
-                transform: slideDirection === 'right' ? 'translateX(0)' : 'translateX(0)',
-                px: { xs: 1, md: 2 }
+                opacity: isAnimating ? 0.7 : 1,
+                transition: 'opacity 0.3s ease',
               }}
             >
               {getCurrentItems().map((item) => (
