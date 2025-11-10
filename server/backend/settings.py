@@ -77,6 +77,7 @@ CORS_ALLOWED_ORIGINS = [
     deployment_url,
     cname_url
 ]
+# CORS_ALLOWED_ORIGINS = [url for url in [pages_url, deployment_url, cname_url] if url]
 
 ROOT_URLCONF = 'backend.urls'
 
