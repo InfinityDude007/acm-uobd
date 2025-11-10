@@ -96,7 +96,7 @@ const Navbar = ({ toggleColorMode, mode }) => {
                             sx={{
                                 textAlign: "center",
                                 py: 1.25,
-                                color: theme.palette.background.paper,
+                                color: theme.palette.text.tertiary,
                                 "&:hover": {
                                     color: theme.palette.text.primary,
                                     bgcolor: "transparent",
@@ -116,7 +116,7 @@ const Navbar = ({ toggleColorMode, mode }) => {
                             sx={{
                                 textAlign: "center",
                                 py: 1.25,
-                                color: theme.palette.background.paper,
+                                color: theme.palette.text.tertiary,
                                 "&:hover": {
                                     color: theme.palette.text.primary,
                                     bgcolor: "transparent",
@@ -217,7 +217,7 @@ const Navbar = ({ toggleColorMode, mode }) => {
                                         component={RouterLink}
                                         to={item.path}
                                         sx={{
-                                            color: theme.palette.background.paper,
+                                            color: theme.palette.text.tertiary,
                                             textTransform: "none",
                                             fontSize: "1rem",
                                             fontWeight: 500,
@@ -243,7 +243,7 @@ const Navbar = ({ toggleColorMode, mode }) => {
                                     onClick={handleDropdownOpen}
                                     endIcon={<KeyboardArrowDown />}
                                     sx={{
-                                        color: Boolean(anchorEl) ? theme.palette.text.primary : theme.palette.background.paper,
+                                        color: Boolean(anchorEl) ? theme.palette.text.primary : theme.palette.text.tertiary,
                                         textTransform: "none",
                                         fontSize: "1rem",
                                         fontWeight: 500,
@@ -285,7 +285,7 @@ const Navbar = ({ toggleColorMode, mode }) => {
                                             onClick={handleDropdownClose}
                                             sx={{
                                                 "&:hover": {
-                                                    backgroundColor: theme.palette.background.paper,
+                                                    backgroundColor: theme.palette.text.tertiary,
                                                     transition: "background-color 0.8s ease"
                                                 },
                                             }}
@@ -321,7 +321,7 @@ const Navbar = ({ toggleColorMode, mode }) => {
                                     onClick={toggleColorMode}
                                     sx={{
                                         ml: 2,
-                                        color: theme.palette.background.paper,
+                                        color: theme.palette.text.tertiary,
                                         transition: "color 0.3s ease, transform 0.3s ease",
                                         transform: "translateY(0)",
                                         "&:hover": {

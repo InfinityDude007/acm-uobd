@@ -94,7 +94,7 @@ const SearchBar = ({ open: controlledOpen, setOpen: setControlledOpen }) => {
                         onClick={() => setOpen(!open)}
                         aria-label="Toggle search bar"
                         sx={{
-                            color: isMobile ? theme.palette.text.primary : theme.palette.background.paper,
+                            color: theme.palette.text.tertiary,
                             transition: "color 0.3s ease, transform 0.3s ease",
                             transform: "translateY(0)",
                             "&:hover": {
@@ -149,16 +149,16 @@ const SearchBar = ({ open: controlledOpen, setOpen: setControlledOpen }) => {
                                 sx={{
                                     '& .MuiOutlinedInput-root': {
                                         borderRadius: '50px',
-                                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                                        color: '#000',
+                                        backgroundColor: theme.palette.background.default,
+                                        color: theme.palette.text.secondary,
                                         padding: '0px',
                                         transition: 'all 0.3s ease',
                                         '&:hover': {
-                                            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                                            backgroundColor: theme.palette.background.default,
                                             boxShadow: 'none',
                                         },
                                         '&.Mui-focused': {
-                                            backgroundColor: '#fff',
+                                            backgroundColor: theme.palette.background.default,
                                             boxShadow: 'none',
                                             '& fieldset': {
                                                 borderColor: 'transparent',
@@ -169,10 +169,10 @@ const SearchBar = ({ open: controlledOpen, setOpen: setControlledOpen }) => {
                                         },
                                     },
                                     '& .MuiInputBase-input': {
-                                        color: '#000',
+                                        color: theme.palette.text.secondary,
                                         padding: '0.6rem 1.2rem',
                                         '&::placeholder': {
-                                            color: 'rgba(0, 0, 0, 0.5)',
+                                            color: theme.palette.text.secondary,
                                             opacity: 1,
                                         },
                                     },

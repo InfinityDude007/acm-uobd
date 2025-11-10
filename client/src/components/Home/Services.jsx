@@ -119,7 +119,7 @@ const Services = () => {
                   height: "100%",
                   textAlign: "center",
                   p: 3,
-                  backgroundColor: "transparent",
+                  backgroundColor: theme.palette.background.secondary,
                   boxShadow: "0 2px 8px rgba(0, 0, 0, 0.20)", // Added slight grey shadow
                   border: `1px solid ${theme.palette.divider}`,
                   borderRadius: 2,

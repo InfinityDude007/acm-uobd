@@ -33,7 +33,7 @@ const About = () => {
             }}
         >
             <Container maxWidth="lg">
-                <Grid container spacing={15} alignItems="center">
+                <Grid container spacing={{ xs: 5, lg: 15 }} alignItems="center">
                     {/* Image Section - Left Side */}
                     <Grid 
                         size={{ xs: 12, md: 5 }}

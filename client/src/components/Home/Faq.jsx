@@ -165,7 +165,7 @@ const FAQSection = () => {
                   expanded={expanded === index}
                   onChange={handleChange(index)}
                   sx={{
-                    backgroundColor: "transparent",
+                    backgroundColor: theme.palette.background.secondary,
                     border: `1px solid ${theme.palette.divider}`,
                     borderRadius: "12px !important",
                     boxShadow: "none",
@@ -174,11 +174,11 @@ const FAQSection = () => {
                     "&:hover": {
                       borderColor: theme.palette.primary.main,
                       transform: "translateY(-2px)",
-                      boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
+                      boxShadow: "0 8px 10px rgba(0,0,0,0.1)",
                     },
                     "&.Mui-expanded": {
                       borderColor: theme.palette.primary.main,
-                      boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
+                      boxShadow: "0 8px 10px rgba(0,0,0,0.1)",
                     },
                   }}
                 >
@@ -255,7 +255,7 @@ const FAQSection = () => {
                     expanded={expanded === idx}
                     onChange={handleChange(idx)}
                     sx={{
-                      backgroundColor: "transparent",
+                      backgroundColor: theme.palette.background.secondary,
                       border: `1px solid ${theme.palette.divider}`,
                       borderRadius: "12px !important",
                       boxShadow: "none",
@@ -264,11 +264,11 @@ const FAQSection = () => {
                       "&:hover": {
                         borderColor: theme.palette.primary.main,
                         transform: "translateY(-2px)",
-                        boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
+                        boxShadow: "0 8px 10px rgba(0,0,0,0.1)",
                       },
                       "&.Mui-expanded": {
                         borderColor: theme.palette.primary.main,
-                        boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
+                        boxShadow: "0 8px 10px rgba(0,0,0,0.1)",
                       },
                     }}
                   >

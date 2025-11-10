@@ -46,7 +46,7 @@ const Portfolio = () => {
     flexDirection: "column",
     borderRadius: "20px",
     overflow: "hidden",
-    background: theme.palette.background.paper,
+    background: theme.palette.background.secondary,
     transition: "all 0.3s ease",
     cursor: "pointer",
     boxShadow: "0 2px 8px rgba(0, 0, 0, 0.20)",
@@ -104,15 +104,18 @@ const Portfolio = () => {
 
   // Navigation buttons with theme colors
   const NavigationButton = styled(IconButton)(({ theme }) => ({
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.secondary,
     color: theme.palette.primary.main,
-    boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+    transition: "all 0.3s ease",
+    transform: "translateY(0)",
     '&:hover': {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.primary.contrastText,
+      boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+      transform: "translateY(-3px)",
     },
     '&.Mui-disabled': {
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: theme.palette.background.secondary,
       color: theme.palette.action.disabled,
     }
   }));
@@ -381,6 +384,9 @@ const Portfolio = () => {
         py: 5,
         width: '100%',
         backgroundColor: theme.palette.background.default,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
       }}
     >
       {/* Use xl container with padding to push content inward */}
@@ -433,9 +439,8 @@ const Portfolio = () => {
                 disabled={isAnimating}
                 sx={{
                   position: 'absolute',
-                  left: { xs: -12, md: -20, lg: -24 },
-                  top: '50%',
-                  transform: 'translateY(-50%)',
+                  left: { xs: -12, md: -20, lg: 20 },
+                  top: '45%',
                   zIndex: 2,
                   width: 56,
                   height: 56,
@@ -453,9 +458,8 @@ const Portfolio = () => {
                 disabled={isAnimating}
                 sx={{
                   position: 'absolute',
-                  right: { xs: -12, md: -20, lg: -24 },
-                  top: '50%',
-                  transform: 'translateY(-50%)',
+                  right: { xs: -12, md: -20, lg: 20 },
+                  top: '45%',
                   zIndex: 2,
                   width: 56,
                   height: 56,
@@ -498,16 +502,16 @@ const Portfolio = () => {
 
         {/* Carousel Stepper */}
         {maxSteps > 1 && (
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 6 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
             <MobileStepper
               variant="dots"
               steps={maxSteps}
               position="static"
               activeStep={activeStep}
               sx={{
-                backgroundColor: 'transparent',
+                backgroundColor: theme.palette.background.secondary,
                 '& .MuiMobileStepper-dot': {
-                  backgroundColor: theme.palette.mode === 'light' ? 'rgba(0,0,0,0.2)' : 'rgba(255,255,255,0.3)',
+                  backgroundColor: theme.palette.background.paper,
                   width: 12,
                   height: 12,
                   margin: '0 4px',
