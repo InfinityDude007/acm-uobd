@@ -114,13 +114,14 @@ const ModernEventCard = styled(Card)(({ theme }) => ({
   overflow: "hidden",
   position: "relative",
   border: "1px solid rgba(0,0,0,0.06)",
+  boxShadow:"0 8px 25px rgba(0,0,0,0.10)",
   background: "white",
   transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
   cursor: "pointer",
   minWidth: "320px", // Added minimum width to prevent cards from getting too narrow
   "&:hover": {
     transform: "translateY(-12px) scale(1.02)",
-    boxShadow: "0 20px 40px rgba(19, 99, 198, 0.25)",
+    boxShadow: "0 8px 25px rgba(0,0,0,0.15)",
     "& .card-image": {
       transform: "scale(1.15)",
     },
