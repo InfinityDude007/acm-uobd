@@ -88,9 +88,7 @@ const About = () => {
                                     mb: 3.5,
                                     fontSize: { xs: "2rem", md: "2.5rem" },
                                     fontWeight: 700,
-                                    color: theme.palette.mode === "light" 
-                                        ? "#000000" 
-                                        : theme.palette.text.primary,
+                                    color: theme.palette.text.secondary,
                                     lineHeight: 1.2,
                                 }}
                             >

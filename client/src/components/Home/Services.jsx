@@ -79,7 +79,7 @@ const Services = () => {
             sx={{
               fontWeight: 700,
               fontSize: { xs: "2rem", md: "2.5rem" },
-              color: theme.palette.mode === "light" ? "#000000" : theme.palette.text.primary,
+              color: theme.palette.text.secondary,
               mb: 2,
             }}
           >
