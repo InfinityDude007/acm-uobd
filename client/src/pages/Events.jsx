@@ -1543,6 +1543,7 @@ const Events = () => {
                     </Typography>
                   </Box>
 
+                  {/* Added Location Field */}
                   {event.location && (
                     <Box display="flex" alignItems="start">
                       <LocationOn sx={{ fontSize: 18, mr: 1.5, color: "#15ACE1", mt: 0.2 }} />
@@ -1602,6 +1603,7 @@ const Events = () => {
             </ModernEventCard>
           </Zoom>
         </Grid>
+
 
         {/* Details Modal */}
         <ModernDialog 
