@@ -435,7 +435,9 @@ const Events = () => {
                       color: "#1363c6",
                       mb: 2.5,
                       lineHeight: 1.3,
-                      minHeight: "60px"
+                      minHeight: "60px",
+                      textAlign: "left", // Force left alignment
+                      width: "100%"
                     }}
                   >
                     {event.title}
@@ -478,7 +480,8 @@ const Events = () => {
                       display: "-webkit-box",
                       WebkitLineClamp: 3,
                       WebkitBoxOrient: "vertical",
-                      overflow: "hidden"
+                      overflow: "hidden",
+                      textAlign: "left" // Force left alignment
                     }}
                   >
                     {event.description}
@@ -601,56 +604,64 @@ const Events = () => {
                   justifyContent: "flex-end",
                   padding: "32px",
                   color: "white",
-                  textAlign: imageType === 'portrait' ? "left" : "center"
                 }}
               >
-                <Chip 
-                  icon={<EventAvailable sx={{ color: "white !important" }} />}
-                  label="Event Details" 
-                  sx={{ 
-                    backgroundColor: "rgba(19, 99, 198, 0.9)",
-                    color: "white",
-                    fontWeight: 600,
-                    mb: 2,
-                    width: "fit-content",
-                    backdropFilter: "blur(10px)",
-                    alignSelf: imageType === 'portrait' ? "flex-start" : "center"
-                  }} 
-                />
-                <Typography 
-                  variant="h3" 
-                  sx={{ 
-                    fontFamily: '"Ubuntu", sans-serif',
-                    fontWeight: 700,
-                    mb: 1,
-                    textShadow: "2px 2px 8px rgba(0,0,0,0.5)",
-                    fontSize: { xs: "1.75rem", md: "2.5rem" },
-                    maxWidth: imageType === 'portrait' ? "80%" : "100%"
-                  }}
-                >
-                  {event.title}
-                </Typography>
-                <Box display="flex" gap={3} flexWrap="wrap">
-                  <Box display="flex" alignItems="center" gap={1}>
-                    <CalendarToday sx={{ fontSize: 20 }} />
-                    <Typography variant="body1" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 500 }}>
-                      {formatDate(event.date)}
-                    </Typography>
-                  </Box>
-                  <Box display="flex" alignItems="center" gap={1}>
-                    <AccessTime sx={{ fontSize: 20 }} />
-                    <Typography variant="body1" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 500 }}>
-                      {formatTime(event.date)}
-                    </Typography>
-                  </Box>
-                  {event.location && (
+                {/* Event Details Badge - Moved to top left */}
+                <Box sx={{ 
+                  position: "absolute", 
+                  top: 24, 
+                  left: 24,
+                  zIndex: 2
+                }}>
+                  <Chip 
+                    icon={<EventAvailable sx={{ color: "white !important" }} />}
+                    label="Event Details" 
+                    sx={{ 
+                      backgroundColor: "rgba(19, 99, 198, 0.9)",
+                      color: "white",
+                      fontWeight: 600,
+                      backdropFilter: "blur(10px)",
+                    }} 
+                  />
+                </Box>
+
+                {/* Title and details - aligned to left */}
+                <Box sx={{ textAlign: "left", width: "100%" }}>
+                  <Typography 
+                    variant="h3" 
+                    sx={{ 
+                      fontFamily: '"Ubuntu", sans-serif',
+                      fontWeight: 700,
+                      mb: 1,
+                      textShadow: "2px 2px 8px rgba(0,0,0,0.5)",
+                      fontSize: { xs: "1.75rem", md: "2.5rem" },
+                      maxWidth: imageType === 'portrait' ? "80%" : "100%"
+                    }}
+                  >
+                    {event.title}
+                  </Typography>
+                  <Box display="flex" gap={3} flexWrap="wrap">
                     <Box display="flex" alignItems="center" gap={1}>
-                      <LocationOn sx={{ fontSize: 20 }} />
+                      <CalendarToday sx={{ fontSize: 20 }} />
                       <Typography variant="body1" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 500 }}>
-                        {event.location}
+                        {formatDate(event.date)}
                       </Typography>
                     </Box>
-                  )}
+                    <Box display="flex" alignItems="center" gap={1}>
+                      <AccessTime sx={{ fontSize: 20 }} />
+                      <Typography variant="body1" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 500 }}>
+                        {formatTime(event.date)}
+                      </Typography>
+                    </Box>
+                    {event.location && (
+                      <Box display="flex" alignItems="center" gap={1}>
+                        <LocationOn sx={{ fontSize: 20 }} />
+                        <Typography variant="body1" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 500 }}>
+                          {event.location}
+                        </Typography>
+                      </Box>
+                    )}
+                  </Box>
                 </Box>
               </Box>
             </Box>
@@ -664,7 +675,7 @@ const Events = () => {
                     About this event
                   </Typography>
                 </Box>
-                <Typography variant="body1" sx={{ fontFamily: '"Ubuntu", sans-serif', lineHeight: 1.8, color: "#4b5563", fontSize: "16px" }}>
+                <Typography variant="body1" sx={{ fontFamily: '"Ubuntu", sans-serif', lineHeight: 1.8, color: "#4b5563", fontSize: "16px", textAlign: "left" }}>
                   {event.description}
                 </Typography>
               </Box>
