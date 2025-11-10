@@ -5,7 +5,7 @@ class EventSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Event
-        fields = ['id', 'title', 'date', 'description', 'thumbnail']
+        fields = ['id', 'title', 'date', 'description', 'thumbnail','location']
 
     def get_thumbnail(self, obj):
         if obj.thumbnail:
