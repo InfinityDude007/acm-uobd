@@ -64,21 +64,46 @@ const pulse = keyframes`
   50% { opacity: 0.8; }
 `;
 
+// Updated theme with new color scheme
 const theme = createTheme({
   typography: {
     fontFamily: '"Ubuntu", sans-serif',
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
+    fontWeightBold: 700,
     h1: { fontWeight: 700 },
     h2: { fontWeight: 700 },
-    h3: { fontWeight: 600 },
-    h6: { fontWeight: 600 },
+    h3: { fontWeight: 700 },
+    h4: { fontWeight: 700 },
+    h6: { fontWeight: 700 },
+    body1: { fontWeight: 500 },
+    body2: { fontWeight: 400 },
   },
   palette: {
-    primary: { main: '#1363c6' },
-    secondary: { main: '#15ACE1' },
+    primary: { 
+      main: "#1363c6",
+      dark: "#0b55a4",
+      contrastText: "#ffffff"
+    },
+    secondary: { 
+      main: "#15ACE1",
+      contrastText: "#ffffff"
+    },
+    background: {
+      default: "#ffffff",
+      paper: "#d3d4d5",
+      secondary: "#ffffff"
+    },
+    text: {
+      primary: "#ffffff",
+      secondary: "#212529",
+      tertiary: "rgba(255,255,255,0.6)"
+    },
+    divider: "rgba(255,255,255,0.2)",
   },
 });
 
-// Modern Hero Section with gradient overlay - FIXED: removed bgImg prop from DOM
+// Modern Hero Section with updated gradient
 const HeroSection = styled(Box)({
   backgroundImage: `linear-gradient(135deg, rgba(19, 99, 198, 0.95) 0%, rgba(21, 172, 225, 0.9) 100%), url(${bgHero})`,
   backgroundSize: "cover",
@@ -105,7 +130,7 @@ const HeroContent = styled(Box)({
   zIndex: 1,
 });
 
-// Modern Event Card with glassmorphism and minimum width
+// Modern Event Card with updated colors
 const ModernEventCard = styled(Card)(({ theme }) => ({
   height: "100%",
   display: "flex",
@@ -114,11 +139,11 @@ const ModernEventCard = styled(Card)(({ theme }) => ({
   overflow: "hidden",
   position: "relative",
   border: "1px solid rgba(0,0,0,0.06)",
-  boxShadow:"0 8px 25px rgba(0,0,0,0.10)",
-  background: "white",
+  boxShadow: "0 8px 25px rgba(0,0,0,0.10)",
+  background: theme.palette.background.default,
   transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
   cursor: "pointer",
-  minWidth: "320px", // Added minimum width to prevent cards from getting too narrow
+  minWidth: "320px",
   "&:hover": {
     transform: "translateY(-12px) scale(1.02)",
     boxShadow: "0 8px 25px rgba(0,0,0,0.15)",
@@ -168,23 +193,23 @@ const ImageOverlay = styled(Box)({
   color: "white",
 });
 
-// Glassmorphic card for tabs
-const GlassCard = styled(Box)({
+// Glassmorphic card for tabs with updated background
+const GlassCard = styled(Box)(({ theme }) => ({
   background: "rgba(255, 255, 255, 0.95)",
   backdropFilter: "blur(20px)",
   borderRadius: "20px",
   padding: "8px",
   border: "1px solid rgba(255, 255, 255, 0.5)",
   boxShadow: "0 8px 32px rgba(0, 0, 0, 0.08)",
-});
+}));
 
-// Modern Primary Button
-const PrimaryButton = styled(Button)({
-  backgroundColor: "#1363c6",
-  color: "white",
+// Modern Primary Button with updated colors
+const PrimaryButton = styled(Button)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+  color: theme.palette.primary.contrastText,
   padding: "14px 32px",
   borderRadius: "12px",
-  fontWeight: "600",
+  fontWeight: 600,
   textTransform: "none",
   fontSize: "16px",
   fontFamily: '"Ubuntu", sans-serif',
@@ -203,7 +228,7 @@ const PrimaryButton = styled(Button)({
     transition: "left 0.5s ease",
   },
   "&:hover": {
-    backgroundColor: "#0f4e9c",
+    backgroundColor: theme.palette.primary.dark,
     transform: "translateY(-2px)",
     boxShadow: "0 6px 20px rgba(19, 99, 198, 0.4)",
     "&::before": {
@@ -214,15 +239,15 @@ const PrimaryButton = styled(Button)({
     backgroundColor: "#9ca3af",
     color: "white",
   }
-});
+}));
 
-// Modern Secondary Button
-const SecondaryButton = styled(Button)({
-  backgroundColor: "#15ACE1",
-  color: "white",
+// Modern Secondary Button with updated colors
+const SecondaryButton = styled(Button)(({ theme }) => ({
+  backgroundColor: theme.palette.secondary.main,
+  color: theme.palette.secondary.contrastText,
   padding: "14px 32px",
   borderRadius: "12px",
-  fontWeight: "600",
+  fontWeight: 600,
   textTransform: "none",
   fontSize: "16px",
   fontFamily: '"Ubuntu", sans-serif',
@@ -233,10 +258,10 @@ const SecondaryButton = styled(Button)({
     transform: "translateY(-2px)",
     boxShadow: "0 6px 20px rgba(21, 172, 225, 0.4)",
   }
-});
+}));
 
-// Styled TextField with modern design
-const StyledTextField = styled(TextField)({
+// Styled TextField with modern design and updated colors
+const StyledTextField = styled(TextField)(({ theme }) => ({
   "& .MuiOutlinedInput-root": {
     borderRadius: "12px",
     backgroundColor: "#f9fafb",
@@ -244,21 +269,21 @@ const StyledTextField = styled(TextField)({
     "&:hover": {
       backgroundColor: "#ffffff",
       "& .MuiOutlinedInput-notchedOutline": {
-        borderColor: "#15ACE1",
+        borderColor: theme.palette.secondary.main,
         borderWidth: "2px",
       }
     },
     "&.Mui-focused": {
       backgroundColor: "#ffffff",
       "& .MuiOutlinedInput-notchedOutline": {
-        borderColor: "#1363c6",
+        borderColor: theme.palette.primary.main,
         borderWidth: "2px",
       }
     }
   }
-});
+}));
 
-// Modern Dialog with gradient header
+// Modern Dialog with gradient header using theme colors
 const ModernDialog = styled(Dialog)({
   "& .MuiDialog-paper": {
     borderRadius: "24px",
@@ -266,9 +291,9 @@ const ModernDialog = styled(Dialog)({
   }
 });
 
-const GradientHeader = styled(Box)({
-  background: "linear-gradient(135deg, #1363c6 0%, #15ACE1 100%)",
-  color: "white",
+const GradientHeader = styled(Box)(({ theme }) => ({
+  background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+  color: theme.palette.text.primary,
   padding: "32px 24px",
   textAlign: "center",
   position: "relative",
@@ -281,8 +306,7 @@ const GradientHeader = styled(Box)({
     bottom: 0,
     background: 'radial-gradient(circle at 30% 50%, rgba(255,255,255,0.2) 0%, transparent 70%)',
   }
-});
-
+}));
 
 const Events = () => {
   const [upcomingEvents, setUpcomingEvents] = useState([]);
@@ -341,7 +365,7 @@ const Events = () => {
     const [submitting, setSubmitting] = useState(false);
     const [success, setSuccess] = useState(false);
 
-    const [imageType, setImageType] = useState('landscape'); // default
+    const [imageType, setImageType] = useState('landscape');
 
     const handleImageLoad = (e) => {
       const img = e.target;
@@ -403,9 +427,7 @@ const Events = () => {
 
     return (
       <>
-        {/* FIXED: Updated Grid to use v2 syntax with proper responsive columns */}
         <Grid size={{ xs: 12, md: 6, lg: 4 }} sx={{ display: 'flex' }}>
-          {/* FIXED: Wrapped Zoom content properly */}
           <Zoom in={true} style={{ transitionDelay: '100ms', width: '100%' }}>
             <div style={{ width: '100%' }}>
               <ModernEventCard onClick={handleCardClick} elevation={0} sx={{ width: '100%' }}>
@@ -433,11 +455,11 @@ const Events = () => {
                     sx={{ 
                       fontFamily: '"Ubuntu", sans-serif',
                       fontWeight: 700,
-                      color: "#1363c6",
+                      color: "primary.main",
                       mb: 2.5,
                       lineHeight: 1.3,
                       minHeight: "60px",
-                      textAlign: "left", // Force left alignment
+                      textAlign: "left",
                       width: "100%"
                     }}
                   >
@@ -446,24 +468,23 @@ const Events = () => {
                   
                   <Box sx={{ mb: 2.5 }}>
                     <Box display="flex" alignItems="center" mb={1.5}>
-                      <CalendarToday sx={{ fontSize: 18, mr: 1.5, color: "#15ACE1" }} />
-                      <Typography variant="body2" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 500, color: "#374151" }}>
+                      <CalendarToday sx={{ fontSize: 18, mr: 1.5, color: "secondary.main" }} />
+                      <Typography variant="body2" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 500, color: "text.secondary" }}>
                         {formatDate(event.date)}
                       </Typography>
                     </Box>
 
                     <Box display="flex" alignItems="center" mb={1.5}>
-                      <AccessTime sx={{ fontSize: 18, mr: 1.5, color: "#15ACE1" }} />
-                      <Typography variant="body2" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 500, color: "#374151" }}>
+                      <AccessTime sx={{ fontSize: 18, mr: 1.5, color: "secondary.main" }} />
+                      <Typography variant="body2" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 500, color: "text.secondary" }}>
                         {formatTime(event.date)}
                       </Typography>
                     </Box>
 
-                    {/* Added Location Field */}
                     {event.location && (
                       <Box display="flex" alignItems="start">
-                        <LocationOn sx={{ fontSize: 18, mr: 1.5, color: "#15ACE1", mt: 0.2 }} />
-                        <Typography variant="body2" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 500, color: "#374151" }}>
+                        <LocationOn sx={{ fontSize: 18, mr: 1.5, color: "secondary.main", mt: 0.2 }} />
+                        <Typography variant="body2" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 500, color: "text.secondary" }}>
                           {event.location}
                         </Typography>
                       </Box>
@@ -482,7 +503,7 @@ const Events = () => {
                       WebkitLineClamp: 3,
                       WebkitBoxOrient: "vertical",
                       overflow: "hidden",
-                      textAlign: "left" // Force left alignment
+                      textAlign: "left"
                     }}
                   >
                     {event.description}
@@ -556,17 +577,16 @@ const Events = () => {
                 "&::-webkit-scrollbar": {
                   display: "none",
                 },
-                "-ms-overflow-style": "none",  // IE and Edge
-                "scrollbar-width": "none",     // Firefox
+                "-ms-overflow-style": "none",
+                "scrollbar-width": "none",
                 maxHeight: "80vh",
                 overflow: "auto"
               }}>
-            {/* Hero Image Section */}
             <Box sx={{ 
                 position: "relative", 
                 overflow: "hidden", 
                 width: "100%",
-                height: imageType === 'portrait' ? "600px" : "400px", // Taller for posters
+                height: imageType === 'portrait' ? "600px" : "400px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center"
@@ -576,10 +596,10 @@ const Events = () => {
                 image={event.thumbnail || fallbackImg}
                 alt={event.title}
                 sx={{
-                  width: "100%", // Always fill width
-                  height: "100%", // Always fill height
-                  objectFit: "cover", // ALWAYS cover the space
-                  objectPosition: imageType === 'portrait' ? "top center" : "center", // Smart positioning
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: imageType === 'portrait' ? "top center" : "center",
                   display: "block",
                   minWidth: "100%",
                   minHeight: "100%",
@@ -589,7 +609,6 @@ const Events = () => {
                   e.target.src = fallbackImg;
                 }}
               />
-              {/* Dark gradient overlay for text readability */}
               <Box
                 sx={{
                   position: "absolute",
@@ -607,7 +626,6 @@ const Events = () => {
                   color: "white",
                 }}
               >
-                {/* Event Details Badge - Moved to top left */}
                 <Box sx={{ 
                   position: "absolute", 
                   top: 24, 
@@ -626,7 +644,6 @@ const Events = () => {
                   />
                 </Box>
 
-                {/* Title and details - aligned to left */}
                 <Box sx={{ textAlign: "left", width: "100%" }}>
                   <Typography 
                     variant="h3" 
@@ -667,12 +684,11 @@ const Events = () => {
               </Box>
             </Box>
             
-            {/* Content Section */}
-            <Box sx={{ p: 4, backgroundColor: "#ffffff" }}>
+            <Box sx={{ p: 4, backgroundColor: "background.default" }}>
               <Box mb={4}>
                 <Box display="flex" alignItems="center" gap={1.5} mb={2}>
-                  <Box sx={{ width: 4, height: 28, backgroundColor: "#1363c6", borderRadius: "2px" }} />
-                  <Typography variant="h5" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 700, color: "#1f2937" }}>
+                  <Box sx={{ width: 4, height: 28, backgroundColor: "primary.main", borderRadius: "2px" }} />
+                  <Typography variant="h5" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 700, color: "text.secondary" }}>
                     About this event
                   </Typography>
                 </Box>
@@ -781,7 +797,7 @@ const Events = () => {
                   >
                     <CheckCircle sx={{ fontSize: 50, color: "#10b981" }} />
                   </Box>
-                  <Typography variant="h5" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 700, mb: 1, color: "#1f2937" }}>
+                  <Typography variant="h5" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 700, mb: 1, color: "text.secondary" }}>
                     Registration Successful!
                   </Typography>
                   <Typography variant="body1" sx={{ fontFamily: '"Ubuntu", sans-serif', color: "#6b7280" }}>
@@ -802,7 +818,7 @@ const Events = () => {
                   disabled={submitting}
                   margin="normal"
                   InputProps={{
-                    startAdornment: <Person sx={{ mr: 1.5, color: "#15ACE1" }} />
+                    startAdornment: <Person sx={{ mr: 1.5, color: "secondary.main" }} />
                   }}
                 />
                 
@@ -818,7 +834,7 @@ const Events = () => {
                   disabled={submitting}
                   margin="normal"
                   InputProps={{
-                    startAdornment: <Email sx={{ mr: 1.5, color: "#15ACE1" }} />
+                    startAdornment: <Email sx={{ mr: 1.5, color: "secondary.main" }} />
                   }}
                 />
                 
@@ -833,7 +849,7 @@ const Events = () => {
                   disabled={submitting}
                   margin="normal"
                   InputProps={{
-                    startAdornment: <Phone sx={{ mr: 1.5, color: "#15ACE1" }} />
+                    startAdornment: <Phone sx={{ mr: 1.5, color: "secondary.main" }} />
                   }}
                 />
                 
@@ -849,7 +865,7 @@ const Events = () => {
                   disabled={submitting}
                   margin="normal"
                   InputProps={{
-                    startAdornment: <Comment sx={{ mr: 1.5, color: "#15ACE1", alignSelf: "flex-start", mt: 2 }} />
+                    startAdornment: <Comment sx={{ mr: 1.5, color: "secondary.main", alignSelf: "flex-start", mt: 2 }} />
                   }}
                 />
               </Box>
@@ -857,29 +873,12 @@ const Events = () => {
           </DialogContent>
           
           {!success && (
-            <DialogActions sx={{ p: 3, gap: 2 }}>
-              <Button 
-                onClick={(e) => {
-                  e.preventDefault();
-                  setRegistrationModalOpen(false);
-                  setFormData({ name: '', email: '', phone: '', comments: '' });
-                }}
-                disabled={submitting}
-                sx={{ 
-                  color: "#6b7280", 
-                  fontFamily: '"Ubuntu", sans-serif',
-                  fontWeight: 600,
-                  fontSize: "16px",
-                  textTransform: "none",
-                  px: 3
-                }}
-              >
-                Cancel
-              </Button>
+            <DialogActions sx={{ p: 3, justifyContent: "center" }}>
               <SecondaryButton 
                 onClick={handleSubmit}
                 disabled={submitting}
                 startIcon={submitting && <CircularProgress size={20} sx={{ color: "white" }} />}
+                sx={{ minWidth: "200px" }}
               >
                 {submitting ? 'Submitting...' : 'Complete Registration'}
               </SecondaryButton>
@@ -894,7 +893,7 @@ const Events = () => {
     if (loading) {
       return (
         <Container sx={{ textAlign: "center", py: 12 }}>
-          <CircularProgress sx={{ color: "#1363c6" }} size={60} thickness={4} />
+          <CircularProgress sx={{ color: "primary.main" }} size={60} thickness={4} />
           <Typography variant="h6" sx={{ mt: 3, color: "#6b7280", fontFamily: '"Ubuntu", sans-serif', fontWeight: 600 }}>
             Loading events...
           </Typography>
@@ -931,7 +930,6 @@ const Events = () => {
 
     return (
       <Container sx={{ py: 8 }}>
-        {/* Modern Tab Navigation */}
         <GlassCard sx={{ mb: 6 }} data-aos="fade-up">
           <Tabs 
             value={activeTab} 
@@ -950,7 +948,7 @@ const Events = () => {
               },
               "& .Mui-selected": {
                 color: "white !important",
-                backgroundColor: "#1363c6",
+                backgroundColor: "primary.main",
               },
               "& .MuiTabs-indicator": {
                 display: "none"
@@ -965,7 +963,7 @@ const Events = () => {
                     label={upcomingEvents.length} 
                     size="small" 
                     sx={{ 
-                      backgroundColor: activeTab === 0 ? "rgba(255,255,255,0.25)" : "#1363c6",
+                      backgroundColor: activeTab === 0 ? "rgba(255,255,255,0.25)" : "primary.main",
                       color: "white",
                       fontWeight: 700,
                       height: "24px",
@@ -996,7 +994,6 @@ const Events = () => {
           </Tabs>
         </GlassCard>
 
-        {/* Events Grid */}
         <Box data-aos="fade-up">
           {currentEvents.length === 0 ? (
             <GlassCard sx={{ textAlign: "center", py: 12 }}>
@@ -1014,7 +1011,7 @@ const Events = () => {
               >
                 <EventAvailable sx={{ fontSize: 60, color: "#d1d5db" }} />
               </Box>
-              <Typography variant="h5" gutterBottom sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 700, color: "#1f2937", mb: 1 }}>
+              <Typography variant="h5" gutterBottom sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 700, color: "text.secondary", mb: 1 }}>
                 No {activeTab === 0 ? 'upcoming' : 'past'} events
               </Typography>
               <Typography variant="body1" sx={{ fontFamily: '"Ubuntu", sans-serif', color: "#6b7280", maxWidth: 400, mx: "auto" }}>
@@ -1022,7 +1019,6 @@ const Events = () => {
               </Typography>
             </GlassCard>
           ) : (
-            // FIXED: Updated Grid to use v2 syntax with proper breakpoints for 3 cards per row
             <Grid container spacing={4}>
               {currentEvents.map(event => (
                 <EventCardComponent 
@@ -1040,8 +1036,7 @@ const Events = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ minHeight: "100vh", backgroundColor: "#f9fafb" }}>
-        {/* Modern Hero Section - FIXED: removed bgImg prop */}
+      <Box sx={{ minHeight: "100vh", backgroundColor: "background.default" }}>
         <HeroSection data-aos="fade-in">
           <Container>
             <HeroContent data-aos="fade-up">
@@ -1111,10 +1106,8 @@ const Events = () => {
           </Container>
         </HeroSection>
 
-        {/* Main Events Section */}
         <EventsSection />
 
-        {/* Modern Snackbar */}
         <Snackbar
           open={snackbar.open}
           autoHideDuration={6000}
