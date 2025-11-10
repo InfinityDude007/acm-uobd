@@ -19,12 +19,14 @@ const baseColors = {
     secondaryMain: "#15ACE1",
     bgDefaultLight: "#ffffff",
     bgPaperLight: "#d3d4d5",
+    bgSecondaryLight: "#ffffff",
     bgDefaultDark: "#212529",
     bgPaperDark: "#141a29",
+    bgSecondaryDark: "#ffffff01",
     textPrimaryLight: "#ffffff",
     textSecondaryLight: "#212529",
-    textTertiaryLight: "rgba(255,255,255,0.6)",
-    textPrimaryDark: "#ffffff",
+    textTertiary: "rgba(255,255,255,0.6)",
+    textPrimaryDark: "rgba(255,255,255,0.8)",
     textSecondaryDark: "rgba(255,255,255,0.8)",
     dividerLight: "rgba(255,255,255,0.2)",
     dividerDark: "rgba(255,255,255,0.1)",
@@ -44,11 +46,12 @@ export const getDesignTokens = (mode) => ({
         background: {
             default: mode === "light" ? baseColors.bgDefaultLight : baseColors.bgDefaultDark,
             paper: mode === "light" ? baseColors.bgPaperLight : baseColors.bgPaperDark,
+            secondary: mode === "light" ? baseColors.bgSecondaryLight : baseColors.bgSecondaryDark,
         },
         text: {
             primary: mode === "light" ? baseColors.textPrimaryLight : baseColors.textPrimaryDark,
             secondary: mode === "light" ? baseColors.textSecondaryLight : baseColors.textSecondaryDark,
-            tertiary: baseColors.textTertiaryLight
+            tertiary: baseColors.textTertiary
         },
         divider: mode === "light" ? baseColors.dividerLight: baseColors.dividerDark,
     },
@@ -89,6 +92,14 @@ export const getDesignTokens = (mode) => ({
         MuiToolbar: {
             styleOverrides: {
                 root: { paddingLeft: 0, paddingRight: 0 },
+            },
+        },
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    boxShadow: "none",
+                    backgroundImage: "none",
+                },
             },
         },
     },
