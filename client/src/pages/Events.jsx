@@ -668,20 +668,6 @@ const Events = () => {
                   {event.description}
                 </Typography>
               </Box>
-
-              {event.additional_info && (
-                <Box>
-                  <Box display="flex" alignItems="center" gap={1.5} mb={2}>
-                    <Box sx={{ width: 4, height: 28, backgroundColor: "#15ACE1", borderRadius: "2px" }} />
-                    <Typography variant="h5" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 700, color: "#1f2937" }}>
-                      Additional Information
-                    </Typography>
-                  </Box>
-                  <Typography variant="body1" sx={{ fontFamily: '"Ubuntu", sans-serif', lineHeight: 1.8, color: "#4b5563", fontSize: "16px" }}>
-                    {event.additional_info}
-                  </Typography>
-                </Box>
-              )}
             </Box>
           </DialogContent>
           
