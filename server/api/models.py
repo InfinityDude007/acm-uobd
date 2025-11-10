@@ -6,6 +6,7 @@ class Event(models.Model):
     description = models.TextField()
     thumbnail = models.ImageField(upload_to='events', blank=True, null=True)
     date = models.DateTimeField()
+    location = models.CharField(max_length=100,null=True,blank=True)
 
     def __str__(self):
         return self.title
