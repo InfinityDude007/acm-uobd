@@ -78,9 +78,9 @@ const theme = createTheme({
   },
 });
 
-// Modern Hero Section with gradient overlay
-const HeroSection = styled(Box)(({ bgImg }) => ({
-  backgroundImage: `linear-gradient(135deg, rgba(19, 99, 198, 0.95) 0%, rgba(21, 172, 225, 0.9) 100%), url(${bgImg})`,
+// Modern Hero Section with gradient overlay - FIXED: removed bgImg prop from DOM
+const HeroSection = styled(Box)({
+  backgroundImage: `linear-gradient(135deg, rgba(19, 99, 198, 0.95) 0%, rgba(21, 172, 225, 0.9) 100%), url(${bgHero})`,
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundBlendMode: "multiply",
@@ -98,14 +98,14 @@ const HeroSection = styled(Box)(({ bgImg }) => ({
     background: 'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%)',
     animation: `${float} 6s ease-in-out infinite`,
   }
-}));
+});
 
 const HeroContent = styled(Box)({
   position: "relative",
   zIndex: 1,
 });
 
-// Modern Event Card with glassmorphism
+// Modern Event Card with glassmorphism and minimum width
 const ModernEventCard = styled(Card)(({ theme }) => ({
   height: "100%",
   display: "flex",
@@ -117,6 +117,7 @@ const ModernEventCard = styled(Card)(({ theme }) => ({
   background: "white",
   transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
   cursor: "pointer",
+  minWidth: "320px", // Added minimum width to prevent cards from getting too narrow
   "&:hover": {
     transform: "translateY(-12px) scale(1.02)",
     boxShadow: "0 20px 40px rgba(19, 99, 198, 0.25)",
@@ -132,16 +133,6 @@ const ModernEventCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-// const CardImageWrapper = styled(Box)({
-//   height: 240,
-//   position: "relative",
-//   overflow: "hidden",
-//   backgroundColor: "#f0f0f0",
-//   display: "flex",
-//   alignItems: "center",
-//   justifyContent: "center"
-// });
-
 const CardImageWrapper = styled(Box)({
   height: 240,
   position: "relative",
@@ -151,14 +142,6 @@ const CardImageWrapper = styled(Box)({
   alignItems: "center",
   justifyContent: "center"
 });
-
-// const CardImage = styled("img")({
-//   width: "100%",
-//   height: "100%",
-//   objectFit: "cover",
-//   objectPosition: "center",
-//   transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
-// });
 
 const CardImage = styled("img")({
   width: "100%",
@@ -419,118 +402,121 @@ const Events = () => {
 
     return (
       <>
-        <Grid item xs={12} sm={6} md={4}>
-          <Zoom in={true} style={{ transitionDelay: '100ms' }}>
-            <ModernEventCard onClick={handleCardClick} elevation={0}>
-              <CardImageWrapper>
-                <CardImage
-                  src={event.thumbnail || fallbackImg}
-                  alt={event.title}
-                  className="card-image"
-                  onError={(e) => {
-                    e.target.src = fallbackImg;
-                  }}
-                />
-                <ImageOverlay className="hover-overlay">
-                  <Typography variant="body2" sx={{ fontWeight: 600, mb: 1 }}>
-                    Click to view details
+        {/* FIXED: Updated Grid to use v2 syntax with proper responsive columns */}
+        <Grid size={{ xs: 12, md: 6, lg: 4 }} sx={{ display: 'flex' }}>
+          {/* FIXED: Wrapped Zoom content properly */}
+          <Zoom in={true} style={{ transitionDelay: '100ms', width: '100%' }}>
+            <div style={{ width: '100%' }}>
+              <ModernEventCard onClick={handleCardClick} elevation={0} sx={{ width: '100%' }}>
+                <CardImageWrapper>
+                  <CardImage
+                    src={event.thumbnail || fallbackImg}
+                    alt={event.title}
+                    className="card-image"
+                    onError={(e) => {
+                      e.target.src = fallbackImg;
+                    }}
+                  />
+                  <ImageOverlay className="hover-overlay">
+                    <Typography variant="body2" sx={{ fontWeight: 600, mb: 1 }}>
+                      Click to view details
+                    </Typography>
+                    <ArrowForward className="hover-icon" sx={{ transition: "transform 0.3s ease" }} />
+                  </ImageOverlay>
+                </CardImageWrapper>
+
+                <CardContent sx={{ p: 3, flexGrow: 1, display: "flex", flexDirection: "column" }}>
+                  <Typography 
+                    variant="h6" 
+                    component="h2" 
+                    sx={{ 
+                      fontFamily: '"Ubuntu", sans-serif',
+                      fontWeight: 700,
+                      color: "#1363c6",
+                      mb: 2.5,
+                      lineHeight: 1.3,
+                      minHeight: "60px"
+                    }}
+                  >
+                    {event.title}
                   </Typography>
-                  <ArrowForward className="hover-icon" sx={{ transition: "transform 0.3s ease" }} />
-                </ImageOverlay>
-              </CardImageWrapper>
-
-              <CardContent sx={{ p: 3, flexGrow: 1, display: "flex", flexDirection: "column" }}>
-                <Typography 
-                  variant="h6" 
-                  component="h2" 
-                  sx={{ 
-                    fontFamily: '"Ubuntu", sans-serif',
-                    fontWeight: 700,
-                    color: "#1363c6",
-                    mb: 2.5,
-                    lineHeight: 1.3,
-                    minHeight: "60px"
-                  }}
-                >
-                  {event.title}
-                </Typography>
-                
-                <Box sx={{ mb: 2.5 }}>
-                  <Box display="flex" alignItems="center" mb={1.5}>
-                    <CalendarToday sx={{ fontSize: 18, mr: 1.5, color: "#15ACE1" }} />
-                    <Typography variant="body2" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 500, color: "#374151" }}>
-                      {formatDate(event.date)}
-                    </Typography>
-                  </Box>
-
-                  <Box display="flex" alignItems="center" mb={1.5}>
-                    <AccessTime sx={{ fontSize: 18, mr: 1.5, color: "#15ACE1" }} />
-                    <Typography variant="body2" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 500, color: "#374151" }}>
-                      {formatTime(event.date)}
-                    </Typography>
-                  </Box>
-
-                  {/* Added Location Field */}
-                  {event.location && (
-                    <Box display="flex" alignItems="start">
-                      <LocationOn sx={{ fontSize: 18, mr: 1.5, color: "#15ACE1", mt: 0.2 }} />
+                  
+                  <Box sx={{ mb: 2.5 }}>
+                    <Box display="flex" alignItems="center" mb={1.5}>
+                      <CalendarToday sx={{ fontSize: 18, mr: 1.5, color: "#15ACE1" }} />
                       <Typography variant="body2" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 500, color: "#374151" }}>
-                        {event.location}
+                        {formatDate(event.date)}
                       </Typography>
                     </Box>
-                  )}
-                </Box>
 
-                <Typography 
-                  variant="body2" 
-                  color="text.secondary" 
-                  sx={{ 
-                    fontFamily: '"Ubuntu", sans-serif',
-                    mb: 3,
-                    flexGrow: 1,
-                    lineHeight: 1.6,
-                    display: "-webkit-box",
-                    WebkitLineClamp: 3,
-                    WebkitBoxOrient: "vertical",
-                    overflow: "hidden"
-                  }}
-                >
-                  {event.description}
-                </Typography>
+                    <Box display="flex" alignItems="center" mb={1.5}>
+                      <AccessTime sx={{ fontSize: 18, mr: 1.5, color: "#15ACE1" }} />
+                      <Typography variant="body2" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 500, color: "#374151" }}>
+                        {formatTime(event.date)}
+                      </Typography>
+                    </Box>
 
-                <Box mt="auto">
-                  {!isPast ? (
-                    <PrimaryButton
-                      variant="contained"
-                      fullWidth
-                      onClick={handleRegisterClick}
-                      disabled={event.registration_closed}
-                      endIcon={!event.registration_closed && <ArrowForward />}
-                    >
-                      {event.registration_closed ? 'Registration Closed' : 'Register Now'}
-                    </PrimaryButton>
-                  ) : (
-                    <Chip 
-                      label="Event Completed" 
-                      sx={{ 
-                        width: "100%",
-                        height: "48px",
-                        fontSize: "16px",
-                        color: "#6b7280",
-                        borderColor: "#e5e7eb",
-                        fontFamily: '"Ubuntu", sans-serif',
-                        fontWeight: 600,
-                        borderRadius: "12px"
-                      }}
-                      variant="outlined"
-                    />
-                  )}
-                </Box>
-              </CardContent>
-            </ModernEventCard>
+                    {/* Added Location Field */}
+                    {event.location && (
+                      <Box display="flex" alignItems="start">
+                        <LocationOn sx={{ fontSize: 18, mr: 1.5, color: "#15ACE1", mt: 0.2 }} />
+                        <Typography variant="body2" sx={{ fontFamily: '"Ubuntu", sans-serif', fontWeight: 500, color: "#374151" }}>
+                          {event.location}
+                        </Typography>
+                      </Box>
+                    )}
+                  </Box>
+
+                  <Typography 
+                    variant="body2" 
+                    color="text.secondary" 
+                    sx={{ 
+                      fontFamily: '"Ubuntu", sans-serif',
+                      mb: 3,
+                      flexGrow: 1,
+                      lineHeight: 1.6,
+                      display: "-webkit-box",
+                      WebkitLineClamp: 3,
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden"
+                    }}
+                  >
+                    {event.description}
+                  </Typography>
+
+                  <Box mt="auto">
+                    {!isPast ? (
+                      <PrimaryButton
+                        variant="contained"
+                        fullWidth
+                        onClick={handleRegisterClick}
+                        disabled={event.registration_closed}
+                        endIcon={!event.registration_closed && <ArrowForward />}
+                      >
+                        {event.registration_closed ? 'Registration Closed' : 'Register Now'}
+                      </PrimaryButton>
+                    ) : (
+                      <Chip 
+                        label="Event Completed" 
+                        sx={{ 
+                          width: "100%",
+                          height: "48px",
+                          fontSize: "16px",
+                          color: "#6b7280",
+                          borderColor: "#e5e7eb",
+                          fontFamily: '"Ubuntu", sans-serif',
+                          fontWeight: 600,
+                          borderRadius: "12px"
+                        }}
+                        variant="outlined"
+                      />
+                    )}
+                  </Box>
+                </CardContent>
+              </ModernEventCard>
+            </div>
           </Zoom>
         </Grid>
-
 
         {/* Details Modal */}
         <ModernDialog 
@@ -1038,6 +1024,7 @@ const Events = () => {
               </Typography>
             </GlassCard>
           ) : (
+            // FIXED: Updated Grid to use v2 syntax with proper breakpoints for 3 cards per row
             <Grid container spacing={4}>
               {currentEvents.map(event => (
                 <EventCardComponent 
@@ -1056,8 +1043,8 @@ const Events = () => {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ minHeight: "100vh", backgroundColor: "#f9fafb" }}>
-        {/* Modern Hero Section */}
-        <HeroSection bgImg={bgHero} data-aos="fade-in">
+        {/* Modern Hero Section - FIXED: removed bgImg prop */}
+        <HeroSection data-aos="fade-in">
           <Container>
             <HeroContent data-aos="fade-up">
               <Typography 
